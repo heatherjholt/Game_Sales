@@ -28,8 +28,11 @@ def setup_driver():
 
 def main():
     driver = setup_driver()
+    driver.get("https://store.steampowered.com/search/?specials=1")
+    print(driver.title)
     time.sleep(3)
     driver.quit()
+    print("Driver Closed.")
     
 if __name__ == "__main__":
     main()
