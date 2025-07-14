@@ -15,9 +15,9 @@ GENRE_TAGS = {
     "action": 19,
     "indie": 492,
     "rpg": 122,
-    "Simulation": 599,
-    "Sports": 701,
-    "Early Access": 493,
+    "simulation": 599,
+    "sports": 701,
+    "early Access": 493,
     "horror": 1667
 }
 
@@ -40,11 +40,11 @@ def get_genre():
     for genre in GENRE_TAGS.keys():
         print(f"- {genre}")
         
-    genre_opt = input("Choose your genre you want to search: ")
+    genre_opt = input("Choose your genre you want to search: ").lower()
     while genre_opt not in GENRE_TAGS.keys():
-        genre_opt = input("Please choose a valid genre: ")
+        genre_opt = input("Please choose a valid genre: ").lower()
         
-    return genre_opt
+    return GENRE_TAGS[genre_opt]
 
 # Developed by Garrett: Returns url string of genre and next page
 def build_url(genre, page):
