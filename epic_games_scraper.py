@@ -57,13 +57,13 @@ def search_deals(genre):
         driver.get(url)
         
         wait = WebDriverWait(driver, 10)
-        
-        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-r227zj")))
-        
-        time.sleep(1)
+        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-1ufzxyu")))
+                
+        time.sleep(3)
+
         
         soup = BeautifulSoup(driver.page_source, "html.parser")
-        rows = soup.select("a.search_result_row")
+        rows = soup.select("a.css-r227zj")
         
         if rows:
             for row in rows:
