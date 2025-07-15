@@ -58,7 +58,7 @@ def search_deals(genre):
         
         wait = WebDriverWait(driver, 10)
         
-        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "a.search_result_row")))
+        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-r227zj")))
         
         time.sleep(1)
         
@@ -67,10 +67,10 @@ def search_deals(genre):
         
         if rows:
             for row in rows:
-                title_element = row.select_one(".title")
-                discount_element = row.select_one(".discount_pct")
-                original_price_element = row.select_one(".discount_original_price")
-                discounted_price_element = row.select_one(".discount_final_price")
+                title_element = row.select_one(".css-2ucwu")
+                discount_element = ""
+                original_price_element = row.select_one(".css-119zqif")
+                discounted_price_element = row.select_one(".css-16v43w0")
                 game_url = row.get("href", "").strip()
 
                 deal = {
