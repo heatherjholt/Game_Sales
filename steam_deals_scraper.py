@@ -9,6 +9,7 @@ import time
 import csv
 import os
 
+
 # Steam uses ids to represent their genres
 # Will be used to query for specific genres when scraping
 GENRE_TAGS = {
