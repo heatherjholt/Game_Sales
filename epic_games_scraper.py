@@ -33,6 +33,17 @@ def setup_driver():
     print("Driver Initialized")
     return driver
 
+def get_genre():
+    print("Available Genres: ")
+    for genre in GENRE_TAGS.keys():
+        print(f"- {genre}")
+        
+    genre_opt = input("Choose your genre you want to search: ").lower()
+    while genre_opt not in GENRE_TAGS.keys():
+        genre_opt = input("Please choose a valid genre: ").lower()
+        
+    return GENRE_TAGS[genre_opt]
+
 def build_url(genre):
     return f"https://store.epicgames.com/en-US/browse?sortBy=releaseDate&sortDir=DESC&tag={genre}&priceTier=tierDiscouted&category=Game&count=40&start=0"
 
@@ -71,9 +82,9 @@ def search_deals(genre):
                 } 
                 deals.append(deal)
             
-            print(f"Page {page}: Scrapped {len(rows)} deals.")
+            print(f"Scrapped {len(rows)} deals.")
         else:
-            print(f"No results on page {page}.")
+            print(f"No results found.")
                 
     except NoSuchElementException:
         driver.quit()
@@ -81,3 +92,25 @@ def search_deals(genre):
     driver.quit()
     
     return deals
+
+def write_to_csv(deals, file):
+    if deals == []:
+        print("No deals to be written.")
+        return
+    else:
+        os.makedirs("deals", exist_ok = True)
+        with open(os.path.join("deals", file), "w", newline = "") as f:
+            csv_writer = csv.DictWriter(f, ["title", "discount", 
+                                            "original price", "discount price", "url"])
+            csv_writer.writeheader()
+            csv_writer.writerows(deals)
+            
+def main():
+    genre = get_genre()
+    deals = search_deals(genre)
+    print("Writing to CSV file")
+    write_to_csv(deals, EPIC_CSV_FILE)
+    print("Driver Closed.")
+    
+if __name__ == "__main__":
+    main()
