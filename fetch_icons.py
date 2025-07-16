@@ -2,14 +2,14 @@ import requests
 import os
 import time
 
-page_num = 1
+page_num = 0
 URL = f"https://www.cheapshark.com/img/stores/icons/{page_num}.png"
 
 os.makedirs("images", exist_ok = True)
 
 MAX_PAGES = 34
 
-while page_num <= MAX_PAGES:
+while page_num < MAX_PAGES:
     url = f"https://www.cheapshark.com/img/stores/icons/{page_num}.png"
     print(f"Downloading image {url}...")
     res = requests.get(url)
