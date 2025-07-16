@@ -1,2 +1,4 @@
 # Game_Sales
-Web scraping Steam and other gaming websites' data for sales. 
+Using CheapShark API to gather game deals for user requests via client side interface. 
+
+Will use Python, Flask, HTML.
