@@ -22,14 +22,24 @@ def return_cheapest_entry(games):
         return None
     return min(games, key=lambda g: float(g["cheapest"]))
 
+# Function to return highest rating
+def return_highest_rating(games):
+    if not games:
+        return None
+    return max(games, key=lambda g: float(g.get("dealRating",0)))
+
+
 # Some testing stuff
 def main():
     title = input("Enter title of game to search: ")
     games = search_games(title)
     cheapest_entry = return_cheapest_entry(games)
+    best_rating = return_highest_rating(games)
     print(json.dumps(games, indent = 2))
     print("Cheapest Entry is: \n")
     print(json.dumps(cheapest_entry, indent = 2))
+    print("Best Rating:")
+    print(json.dumps(best_rating, indent = 2))
     
 if __name__ == "__main__":
     main()
