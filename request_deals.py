@@ -28,9 +28,19 @@ def return_highest_rating(games):
         return None
     return max(games, key=lambda g: float(g.get("dealRating",0)))
 
+# Function to pull all top deals
+def top_deals(n):
+    resp = requests.get(DEALS_URL, params={"number": n}, timeout = 10)
+    resp.raise_for_status()
+    return resp.json()
+
 
 # Some testing stuff
 def main():
+    user_top = int(input("Enter the number top deals you wish to gaze upon: "))
+    print("Your wish is my command here are the top ", user_top, ":")
+    results = top_deals(user_top)
+    print(json.dumps(results, indent = 2))
     title = input("Enter title of game to search: ")
     games = search_games(title)
     cheapest_entry = return_cheapest_entry(games)
