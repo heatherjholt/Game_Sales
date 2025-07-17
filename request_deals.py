@@ -41,7 +41,7 @@ def main():
     print("Your wish is my command here are the top ", user_top, ":")
     results = top_deals(user_top)
     print(json.dumps(results, indent = 2))
-    title = input("Enter title of game to search: ")
+    title = input("Don't like these options? Search any title (must be exact match): ")
     games = search_games(title)
     cheapest_entry = return_cheapest_entry(games)
     best_rating = return_highest_rating(games)
