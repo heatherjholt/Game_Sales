@@ -9,7 +9,7 @@ GAMES_URL = f"{API_URL}/games"
 
 # Function that takes a title and returns the games matching it
 def search_games(title, limit = 10):
-    params = {"title": title, "limit": limit}
+    params = {"title": title, "limit": limit, "exact": 1}
     
     response = requests.get(DEALS_URL, params, timeout=10)
     response.raise_for_status()
