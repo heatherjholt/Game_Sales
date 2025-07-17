@@ -20,7 +20,7 @@ def search_games(title, limit = 10):
 def return_cheapest_entry(games):
     if not games:
         return None
-    return min(games, key=lambda g: float(g.get("cheapest")))
+    return min(games, key=lambda g: float(g.get("cheapest",0)))
 
 # Function to return highest rating
 def return_highest_rating(games):
