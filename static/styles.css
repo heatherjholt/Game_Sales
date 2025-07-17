@@ -7,7 +7,7 @@ html, body {
 
 /* background image, font/color */
 body {
-    background-image: url("/static/background.png");
+    background-image: url("/static/background.png"), url("https://www.pngitem.com/pimgs/m/47-479562_snake-clip-art-transparent-background-cartoon-snake-hd.png");
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
