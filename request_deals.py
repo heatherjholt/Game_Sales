@@ -30,7 +30,7 @@ def return_highest_rating(games):
 
 # Function to pull all top deals
 def top_deals(n):
-    resp = requests.get(DEALS_URL, params={"number": n}, timeout = 10)
+    resp = requests.get(DEALS_URL, params={"pageSize": n}, timeout = 10)
     resp.raise_for_status()
     return resp.json()
 
