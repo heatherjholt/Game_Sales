@@ -11,7 +11,7 @@ GAMES_URL = f"{API_URL}/games"
 def search_games(title, limit = 10):
     params = {"title": title, "limit": limit}
     
-    response = requests.get(GAMES_URL, params, timeout=10)
+    response = requests.get(DEALS_URL, params, timeout=10)
     response.raise_for_status()
     
     return response.json()
@@ -20,7 +20,7 @@ def search_games(title, limit = 10):
 def return_cheapest_entry(games):
     if not games:
         return None
-    return min(games, key=lambda g: float(g["cheapest"]))
+    return min(games, key=lambda g: float(g.get("cheapest")))
 
 # Function to return highest rating
 def return_highest_rating(games):
