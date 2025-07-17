@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CheapShark Game Deals</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <h1>CheapShark Game Deals</h1>
+    <form method="POST">
+        <input type="text" name="title" id="search-input" autocomplete="off" placeholder="Enter Game Name" required>
+        <button type="submit">Ssssearch...</button>
+        <ul id="suggestions" class="suggestions"></ul>
+    </form>
+
+    {% if deals %}
+        <h2>Results:</h2>
+        <ul>
+        {% for deal in deals %}
+            <li>
+                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/{{ deal.steamAppID }}/capsule_sm_120.jpg"
+                     onerror="this.style.display='none'" alt="Thumbnail"><br>
+                <strong>{{ deal.title }}</strong><br>
+                Sale Price: ${{ deal.salePrice }}<br>
+                Normal Price: ${{ deal.normalPrice }}<br>
+                Store: {{ store_map.get(deal.storeID, 'Unknown') }}<br>
+                <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">Buy Now</a>
+            </li><br>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,40 @@
+/* messing with perspective of background photo and weird header look to it */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* background image, font/color */
+body {
+    background-image: url("/static/background.png");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Courier New', Courier, monospace, sans-serif;
+    color: black;
+}
+
+/* fancy up suggestions attempt */
+#suggestions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  width: 60%;
+  z-index: 1000;
+}
+
+#suggestions li {
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+#suggestions li:hover {
+  background-color: #eee;
+}
