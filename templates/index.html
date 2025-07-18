@@ -30,8 +30,16 @@
         {% for deal in deals %}
             <li>
                 <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
-                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/{{ deal.steamAppID }}/capsule_sm_120.jpg"
-                        onerror="this.style.display='none'" alt="Thumbnail">
+
+                <!--fixing thumbnail issue, not using steam exclusive link-->
+                {% if deal.thumb %}
+                <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
+                    <img src="{{ deal.thumb }}" alt="Thumbnail" style="max-width: 120px;">
+                </a><br>
+                {% else %}
+                <span style="font-style: italic; color: #999;">no thumbnail... sorry!</span><br>
+                {% endif %}
+
                 </a><br>
                 <strong>{{ deal.title }}</strong><br>
                 Sale Price: ${{ deal.salePrice }}<br>
@@ -54,5 +62,9 @@
         </ul>
     {% endif %}
 </body>
+
+<footer class="footer">
+  <p>made with sass by code_blooded</p>
+</footer>
 
 </html>

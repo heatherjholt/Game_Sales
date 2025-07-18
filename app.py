@@ -33,7 +33,8 @@ store_map = get_store_map()
 @app.route("/", methods=["GET"])
 def index():
     deals = top_deals(50)
-    return render_template("index.html", deals=deals, store_map=store_map, title="Top 50 Deals")
+    #TESTING print(deals[6])
+    return render_template("index.html", deals=deals, store_map=store_map, title="Top 50 Deals") 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
