@@ -1,19 +1,27 @@
 /* messing with perspective of background photo and weird header look to it */
 html, body {
     height: 100%;
+    min-height: 100%;
     margin: 0;
     padding: 0;
+    /* background-color: #130018;  solid color for testing, WILL CHANGE */
+    /* background-image: url("/static/background.png"); */
 }
 
 /* background image, font/color */
 body {
-    background-image: url("/static/background.png"), url("https://www.pngitem.com/pimgs/m/47-479562_snake-clip-art-transparent-background-cartoon-snake-hd.png");
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: 'Courier New', Courier, monospace, sans-serif;
-    color: black;
+    color: white; 
+    padding: 2em;
+}
+
+body::after {
+    content: '';
+    display: block;
+    height: 100px;
 }
 
 /* fancy up suggestions attempt */
@@ -37,4 +45,19 @@ body {
 
 #suggestions li:hover {
   background-color: #eee;
+}
+
+form {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    text-align: center;
 }

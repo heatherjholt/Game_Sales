@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>CheapShark Game Deals</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <title>Cheap_Snake Game Deals</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"><!--loads css file for styling-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><!--loads jquery for autocomplete-->
+    <script src="{{ url_for('static', filename='script.js') }}"></script><!--loads js file-->
 </head>
+
 <body>
-    <h1>CheapShark Game Deals</h1>
+    <h1>Cheap_Snake Game Deals</h1>
+    <!--search box, pulls suggestions from script.js for autocomplete-->
     <form method="POST">
         <input type="text" name="title" id="search-input" autocomplete="off" placeholder="Enter Game Name" required>
         <button type="submit">Ssssearch...</button>
         <ul id="suggestions" class="suggestions"></ul>
     </form>
 
+    <!--data from flask is looped through, finds thumbnail, price, store name using store map, and link to game-->
     {% if deals %}
         <h2>Results:</h2>
         <ul>
@@ -32,4 +36,5 @@
         </ul>
     {% endif %}
 </body>
+
 </html>
