@@ -20,17 +20,30 @@
 
     <!--data from flask is looped through, finds thumbnail, price, store name using store map, and link to game-->
     {% if deals %}
-        <h2>Results:</h2>
+        <h2>Top 50 Deals:</h2>
         <ul>
         {% for deal in deals %}
             <li>
-                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/{{ deal.steamAppID }}/capsule_sm_120.jpg"
-                     onerror="this.style.display='none'" alt="Thumbnail"><br>
+                <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/{{ deal.steamAppID }}/capsule_sm_120.jpg"
+                        onerror="this.style.display='none'" alt="Thumbnail">
+                </a><br>
                 <strong>{{ deal.title }}</strong><br>
                 Sale Price: ${{ deal.salePrice }}<br>
                 Normal Price: ${{ deal.normalPrice }}<br>
-                Store: {{ store_map.get(deal.storeID, 'Unknown') }}<br>
-                <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">Buy Now</a>
+                <!--show discount %-->
+                {% if deal.normalPrice|float > 0 %}
+                    Discount: {{ ((deal.normalPrice|float - deal.salePrice|float) / deal.normalPrice|float * 100) | round(0) }}% Off<br>
+                {% endif %}
+                {% set store = store_map.get(deal.storeID, {}) %}
+                {% if store %}
+                <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5em;">
+                    <img src="https://www.cheapshark.com{{ store.images.icon }}" alt="{{ store.storeName }} Logo" style="height: 24px;">
+                    <span>{{ store.storeName }}</span>
+                </a><br>
+                {% else %}
+                <span>Unknown Store</span><br>
+                {% endif %}
             </li><br>
         {% endfor %}
         </ul>

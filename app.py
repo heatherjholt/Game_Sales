@@ -15,8 +15,16 @@ STORES_API = "https://www.cheapshark.com/api/1.0/stores"
 #maps store names to their to ids
 def get_store_map():
     response = requests.get(STORES_API)
-    return {store["storeID"]: store["storeName"] for store in response.json()} if response.ok else {}
-
+    if response.ok:
+        stores = response.json()
+        return {
+            store["storeID"]: {
+                "storeName": store["storeName"],
+                "images": store["images"]
+            }
+            for store in stores
+        }
+    return {}
 store_map = get_store_map()
 
 
