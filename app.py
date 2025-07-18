@@ -30,18 +30,22 @@ store_map = get_store_map()
 
 #shows home page with top deals and search option 
 #get pulls top 50 deals, post searches for title directly 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 def index():
-    deals = []
+    deals = top_deals(50)
+    return render_template("index.html", deals=deals, store_map=store_map, title="Top 50 Deals")
 
-    if request.method == "POST":
-        title = request.form.get("title")
-        deals = search_games(title)
-    else:
-        deals = top_deals(50)
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    # Support both GET and POST fallback
+    query = request.args.get("title", "") if request.method == "GET" else request.form.get("title", "")
+    query = query.strip()
 
-    return render_template("index.html", deals=deals, store_map=store_map)
-
+    if not query:
+        return redirect(url_for("index"))
+    
+    deals = search_games(query)
+    return render_template("index.html", deals=deals, store_map=store_map, title=f"Search results for: {query}", search_query=query)
 
 #listens for get request, uses javascript to send request to api, returns top 5 suggestions (currently)
 @app.route('/autocomplete')

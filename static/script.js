@@ -9,9 +9,10 @@ $(document).ready(function () {
           suggestions.append(`<li>${item}</li>`);
         });
         $('ul#suggestions li').click(function () {
-          $('#search-input').val($(this).text());
-          $('#suggestions').empty();
-          $('form').submit(); //clicking the autocomplete option submits the search 
+        const selectedTitle = $(this).text();
+        $('#search-input').val(selectedTitle);
+        $('#suggestions').empty();
+        window.location.href = '/search?title=' + encodeURIComponent(selectedTitle);  //redirect to /search
         });
       });
     } else {

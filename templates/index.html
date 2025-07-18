@@ -11,8 +11,13 @@
 
 <body>
     <h1>Cheap_Snake Game Deals</h1>
+    <a href="/" style="padding: 0.5em 1em; background-color: #4b0082; color: white; border-radius: 5px; text-decoration: none; margin-bottom: 1em; display: inline-block;">
+    🐍 Home
+    </a>
+
     <!--search box, pulls suggestions from script.js for autocomplete-->
-    <form method="POST">
+    <form method="POST" action="/search">
+
         <input type="text" name="title" id="search-input" autocomplete="off" placeholder="Enter Game Name" required>
         <button type="submit">Ssssearch...</button>
         <ul id="suggestions" class="suggestions"></ul>
@@ -20,7 +25,7 @@
 
     <!--data from flask is looped through, finds thumbnail, price, store name using store map, and link to game-->
     {% if deals %}
-        <h2>Top 50 Deals:</h2>
+        <h2>{{ title }}</h2>
         <ul>
         {% for deal in deals %}
             <li>
