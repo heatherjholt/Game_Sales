@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request, jsonify
 import requests
 from request_deals import top_deals, search_games
+from database import store_deals, get_top_50_deals
 
 app = Flask(__name__)
 
@@ -59,5 +60,5 @@ def autocomplete():
 
 
 if __name__ in "__main__":
+    store_deals()
     app.run(debug=True)
-    

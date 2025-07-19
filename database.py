@@ -1,7 +1,8 @@
 from request_deals import search_games, top_deals
 import sqlite3
+import requests
 
-# Function that creates the table in the database for
+# Function that creates the table in the database for deals
 def create_deals_table():
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
@@ -24,6 +25,7 @@ def create_deals_table():
     conn.commit()
     conn.close()
     
+# Function that inserts a deal into the database
 def insert_deal(deal):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
@@ -49,11 +51,13 @@ def insert_deal(deal):
     conn.commit()
     conn.close()
     
+# Function that will store deals retrieved from the CheapShark API
 def store_deals():
     deals = top_deals(50000)
     for deal in deals:
         insert_deal(deal)
         
+# Function that deletes deals from the database
 def delete_deal(dealID):
     conn = sqlite3.connect("deals.db")
     table = conn.cursor()
@@ -61,6 +65,7 @@ def delete_deal(dealID):
     conn.commit()
     conn.close()
     
+# Function that updates current deals in the database
 def update_deal(dealID, **kwargs):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
@@ -74,11 +79,24 @@ def update_deal(dealID, **kwargs):
     table.execute(query, values)
     conn.commit()
     conn.close()
-        
 
+def get_top_50_deals():
+    conn = sqlite3.connect("deals.db", isolation_level=None)
+    conn.row_factory = sqlite3.Row
+    table = conn.cursor()
+    table.execute("""
+        SELECT title, storeID, salePrice, normalPrice, savings, dealRating, thumb
+        FROM deals
+        ORDER BY dealRating DESC
+        LIMIT 50
+    """)
+    deals = [dict(row) for row in table.fetchall()]
+    conn.close()
+    return deals
 # ----------------------------------------------------------------------------------------
 # Database section for emails
 
+# Create email table
 def create_email_table():
     conn = sqlite3.connect("deals.db", isolation_level = None)
     table = conn.cursor()
@@ -92,6 +110,7 @@ def create_email_table():
     conn.commit()
     conn.close()
     
+# Insert emails entered in by the user
 def insert_email(email):
     conn = sqlite3.connect("deals.db", isolation_level = None)
     table = conn.cursor()
@@ -102,6 +121,7 @@ def insert_email(email):
     conn.commit()
     conn.close()
 
+# Helper function to look at the database
 def get_emails():
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
@@ -109,8 +129,3 @@ def get_emails():
     emails = [row[0] for row in table.fetchall()]
     conn.close()
     return emails
-    
-create_email_table()
-insert_email("gfj2e@outlook.com")
-emails = get_emails()
-print(emails)
