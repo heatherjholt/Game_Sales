@@ -108,6 +108,14 @@ def search_games_database(title, limit=10):
     deals = [dict(row) for row in table.fetchall()]
     conn.close()
     return deals
+
+def clear_deals_table():
+    conn = sqlite3.connect("deals.db", isolation_level=None)
+    table = conn.cursor()
+    table.execute("DELETE FROM deals")
+    conn.commit()
+    conn.close()
+    
 # ----------------------------------------------------------------------------------------
 # Database section for emails
 
