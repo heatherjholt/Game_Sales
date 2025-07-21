@@ -42,8 +42,8 @@
 
                 </a><br>
                 <strong>{{ deal.title }}</strong><br>
-                Sale Price: ${{ deal.salePrice }}<br>
-                Normal Price: ${{ deal.normalPrice }}<br>
+                Sale Price: ${{ "%.2f"|format(deal.salePrice|float) }}<br>
+                Original Price: ${{ "%.2f"|format(deal.normalPrice|float) }}<br>
                 <!--show discount %-->
                 {% if deal.normalPrice|float > 0 %}
                     Discount: {{ ((deal.normalPrice|float - deal.salePrice|float) / deal.normalPrice|float * 100) | round(0) }}% Off<br>
