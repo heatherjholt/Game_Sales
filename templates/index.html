@@ -26,40 +26,69 @@
     <!--data from flask is looped through, finds thumbnail, price, store name using store map, and link to game-->
     {% if deals %}
         <h2>{{ title }}</h2>
-        <ul>
+
+
+        <ul class="card-grid">
         {% for deal in deals %}
-            <li>
-                <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
+            <li class="card">
+            <div class="card-content">
+                <div class="card-image-container">
+                    {% if deal.steamAppID %}
+                        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/{{ deal.steamAppID }}/header.jpg" alt="Steam Banner">
+                    {% elif deal.thumb %}
+                        <img src="{{ deal.thumb }}" alt="Thumbnail">
+                    {% else %}
+                        <span style="color: #999; font-size: 0.9em;">no thumbnail... sorry!</span>
+                    {% endif %}
+                </div>
 
-                <!--fixing thumbnail issue, not using steam exclusive link-->
-                {% if deal.thumb %}
-                <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
-                    <img src="{{ deal.thumb }}" alt="Thumbnail" style="max-width: 120px;">
-                </a><br>
-                {% else %}
-                <span style="font-style: italic; color: #999;">no thumbnail... sorry!</span><br>
-                {% endif %}
+                <div class="card-info">
+                <h3>{{ deal.title }}</h3>
+                <p><strong>${{ "%.2f"|format(deal.salePrice|float) }}</strong></p>
+                </div>
 
-                </a><br>
-                <strong>{{ deal.title }}</strong><br>
-                Sale Price: ${{ "%.2f"|format(deal.salePrice|float) }}<br>
-                Original Price: ${{ "%.2f"|format(deal.normalPrice|float) }}<br>
-                <!--show discount %-->
-                {% if deal.normalPrice|float > 0 %}
-                    Discount: {{ ((deal.normalPrice|float - deal.salePrice|float) / deal.normalPrice|float * 100) | round(0) }}% Off<br>
-                {% endif %}
-                {% set store = store_map.get(deal.storeID, {}) %}
-                {% if store %}
-                <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5em;">
-                    <img src="https://www.cheapshark.com{{ store.images.icon }}" alt="{{ store.storeName }} Logo" style="height: 24px;">
-                    <span>{{ store.storeName }}</span>
-                </a><br>
-                {% else %}
-                <span>Unknown Store</span><br>
-                {% endif %}
-            </li><br>
+                <div class="card-hover">
+                <div class="hover-info">
+                    <p><strong>Sale Price:</strong> ${{ "%.2f"|format(deal.salePrice|float) }}</p>
+                    <p><strong>Original Price:</strong> ${{ "%.2f"|format(deal.normalPrice|float) }}</p>
+
+                    {% if deal.savings %}
+                    <p><strong>Discount:</strong> {{ "%.0f"|format(deal.savings|float) }}% Off</p>
+                    {% endif %}
+
+                    {% set rating = deal.dealRating|float %}
+                    {% if rating %}
+                    <p><strong>Deal Rating:</strong> {{ rating|int if rating == 10 else "%.1f"|format(rating) }}/10</p>
+                    {% endif %}
+
+
+                    {% if deal.steamRatingText and deal.steamRatingPercent %}
+                    <p><strong>Steam Rating:</strong> {{ deal.steamRatingText }} ({{ deal.steamRatingPercent }}%)</p>
+                    {% endif %}
+
+                    {% if deal.metacriticScore %}
+                    <p><strong>Metacritic Rating:</strong> {{ deal.metacriticScore }}</p>
+                    {% endif %}
+
+                    {% set store = store_map.get(deal.storeID, {}) %}
+                    {% if store %}
+                    <p>
+                        <img src="https://www.cheapshark.com{{ store.images.icon }}" style="height: 20px; vertical-align: middle;">
+                        {{ store.storeName }}
+                    </p>
+                    {% endif %}
+                </div>
+
+                <a class="buy-button" href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
+                    Purchase 🛒
+                </a>
+                </div>
+
+            </div>
+            </li>
         {% endfor %}
         </ul>
+
     {% endif %}
 </body>
 
