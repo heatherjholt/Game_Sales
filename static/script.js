@@ -21,3 +21,17 @@ $(document).ready(function () {
   });
 });
 
+// toggle list/grid
+function setView(view) {
+  const grid = document.querySelector('.card-grid');
+  const list = document.querySelector('.card-list');
+
+  if (view === 'grid') {
+    grid.style.display = 'flex';
+    list.style.display = 'none';
+  } else {
+    grid.style.display = 'none';
+    list.style.display = 'flex';
+  }
+}
+
