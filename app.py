@@ -35,17 +35,6 @@ store_map = get_store_map()
 def index():
     deals = get_top_50_deals()
     #TESTING print(deals[6])
-
-    #TESTING filter out duplicates for lowest deal 
-    unique_deals = {}
-    for deal in deals:
-        title = deal['title']
-        price = float(deal['salePrice'])
-        if title not in unique_deals or price < float(unique_deals[title]['salePrice']):
-            unique_deals[title] = deal
-
-    deals = list(unique_deals.values())
-
     return render_template("index.html", deals=deals, store_map=store_map, title="Top 50 Deals") 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -61,10 +50,11 @@ def search():
     
     if not deals:                           # Put in deals not found in the database into the database
         print("Deals not found in database...")
-        deals = search_games(query)
-        for deal in deals:
+        results = search_games(query)
+        for deal in results:
             deal["storeID"] = int(deal["storeID"])      # Convert storeID to int for storing in database
             insert_deal(deal)
+        deals = search_games_database(query)
     return render_template("index.html", deals=deals, store_map=store_map, title=f"Search results for: {query}", search_query=query)
 
 #listens for get request, uses javascript to send request to api, returns top 5 suggestions (currently)
