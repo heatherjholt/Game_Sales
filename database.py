@@ -80,6 +80,7 @@ def update_deal(dealID, **kwargs):
     conn.commit()
     conn.close()
 
+# Returns top 50 deals from the database
 def get_top_50_deals():
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
@@ -90,6 +91,20 @@ def get_top_50_deals():
         ORDER BY dealRating DESC
         LIMIT 50
     """)
+    deals = [dict(row) for row in table.fetchall()]
+    conn.close()
+    return deals
+
+# Search for games from the database
+def search_games_database(title, limit=10):
+    conn = sqlite3.connect("deals.db", isolation_level=None)
+    conn.row_factory = sqlite3.Row
+    table = conn.cursor()
+    table.execute("""
+        SELECT * FROM deals WHERE title LIKE ?
+        ORDER BY dealRating DESC
+        LIMIT ?
+    """, (f"{title}%", limit))
     deals = [dict(row) for row in table.fetchall()]
     conn.close()
     return deals
