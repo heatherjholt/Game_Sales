@@ -35,6 +35,17 @@ store_map = get_store_map()
 def index():
     deals = get_top_50_deals()
     #TESTING print(deals[6])
+
+    #TESTING filter out duplicates for lowest deal 
+    unique_deals = {}
+    for deal in deals:
+        title = deal['title']
+        price = float(deal['salePrice'])
+        if title not in unique_deals or price < float(unique_deals[title]['salePrice']):
+            unique_deals[title] = deal
+
+    deals = list(unique_deals.values())
+
     return render_template("index.html", deals=deals, store_map=store_map, title="Top 50 Deals") 
 
 @app.route("/search", methods=["GET", "POST"])
