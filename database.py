@@ -86,7 +86,7 @@ def get_top_50_deals():
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
     table.execute("""
-        SELECT title, storeID, salePrice, normalPrice, savings, dealRating, thumb
+        SELECT title, storeID, salePrice, normalPrice, savings, dealRating, thumb, dealID
         FROM deals
         ORDER BY dealRating DESC
         LIMIT 50
