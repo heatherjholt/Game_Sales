@@ -110,6 +110,56 @@ def search_games_database(title, limit=50):
     conn.close()
     return deals
 
+def sort_by_alphabetical(limit=50):
+    conn = sqlite3.connect("deals.db", isolation_level=None)
+    conn.row_factory = sqlite3.Row
+    table = conn.cursor()
+    table.execute("""
+                  SELECT * FROM deals
+                  ORDER BY title ASC
+            """)
+    deals = [dict(row) for row in table.fetchall()]
+    conn.close()
+    return deals
+
+def sort_by_sales_price(limit=50):
+    conn = sqlite3.connect("deals.db", isolation_level=None)
+    conn.row_factory = sqlite3.Row
+    table = conn.cursor()
+    table.execute("""
+                  SELECT * FROM deals
+                  ORDER BY salePrice ASC
+            """)
+    deals = [dict(row) for row in table.fetchall()]
+    conn.close()
+    return deals
+
+def sort_by_normal_price(limit=50):
+    conn = sqlite3.connect("deals.db", isolation_level=None)
+    conn.row_factory = sqlite3.Row
+    table = conn.cursor()
+    table.execute("""
+                  SELECT * FROM deals
+                  ORDER BY normalPrice ASC
+            """)
+    deals = [dict(row) for row in table.fetchall()]
+    conn.close()
+    return deals
+
+def sort_by_deal_rating(limit=50):
+    conn = sqlite3.connect("deals.db", isolation_level=None)
+    conn.row_factory = sqlite3.Row
+    table = conn.cursor()
+    table.execute("""
+                  SELECT * FROM deals
+                  ORDER by dealRating DESC
+            """)
+    deals = [dict(row) for row in table.fetchall()]
+    conn.close()
+    return deals
+
+def sort
+
 def clear_deals_table():
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
