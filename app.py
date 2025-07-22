@@ -1,10 +1,12 @@
 #flask creates the web app, render_template for index.html, 
 #requests to get data from the user, jsonify returns the json data for autocomplete
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 import requests
 from request_deals import search_games
 from database import create_deals_table, store_deals, get_top_50_deals, insert_deal, search_games_database
 from database import clear_deals_table, print_to_text_file
+#for email subscription 
+from database import create_deals_table, clear_deals_table, store_deals, get_top_50_deals, create_email_table, insert_email
 app = Flask(__name__)
 
 
@@ -66,8 +68,16 @@ def autocomplete():
     suggestions = [game['external'] for game in response.json()] if response.ok else []
     return jsonify(suggestions)
 
+#email subscription
+@app.route('/subscribe', methods=['POST'])
+def subscribe():
+    email = request.form.get('email')
+    if email:
+        insert_email(email)
+        return redirect(url_for('index'))
 
 if __name__ in "__main__":
+    create_email_table() 
     create_deals_table()
     clear_deals_table()
     store_deals()
