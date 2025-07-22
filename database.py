@@ -158,7 +158,17 @@ def sort_by_deal_rating(limit=50):
     conn.close()
     return deals
 
-def sort
+def sort_by_savings(limit=50):
+    conn = sqlite3.connect("deals.db", isolation_level=None)
+    conn.row_factory = sqlite3.Row
+    table = conn.cursor()
+    table.execute("""
+                  SELECT * FROM deals
+                  ORDER BY savings DESC
+            """)
+    deals = [dict(row) for row in table.fetchall()]
+    conn.close()
+    return deals
 
 def clear_deals_table():
     conn = sqlite3.connect("deals.db", isolation_level=None)
