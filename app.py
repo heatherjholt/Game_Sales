@@ -7,6 +7,7 @@ from database import create_deals_table, store_deals, get_top_50_deals, insert_d
 from database import clear_deals_table, print_to_text_file
 #for email subscription 
 from database import create_deals_table, clear_deals_table, store_deals, get_top_50_deals, create_email_table, insert_email
+from mailer import emailing
 app = Flask(__name__)
 
 
@@ -74,7 +75,10 @@ def subscribe():
     email = request.form.get('email')
     if email:
         insert_email(email)
+        emailing()
         return redirect(url_for('index'))
+    
+    
 
 if __name__ in "__main__":
     create_email_table() 

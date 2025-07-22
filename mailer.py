@@ -43,7 +43,7 @@ def send_outlook_email(subject, body, to):
         print("Email sent via Gmail!")
 
 def emailing():
-    receiver_email = input("Enter Email: ")
+    #receiver_email = input("Enter Email: ")
     # For test purposes not including adding to database
     #insert_email(receiver_email) 
     
