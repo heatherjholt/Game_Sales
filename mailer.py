@@ -2,7 +2,7 @@ import smtplib
 from email.message import EmailMessage
 from request_deals import top_deals
 #from database import get_emails, insert_email, create_email_table
-import time
+# import time
 
 
 deals = top_deals(10)

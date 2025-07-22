@@ -21,30 +21,30 @@
 21. BioShock Infinite | StoreID: 21 | Sale Price: $2.98 | Normal Price: $29.99 | Savings: 90.063354% | Deal Rating: 10.0
 22. BATTLETECH Mercenary Collection | StoreID: 7 | Sale Price: $12.59 | Normal Price: $89.99 | Savings: 86.009557% | Deal Rating: 10.0
 23. Deus Ex: Human Revolution - Director's Cut | StoreID: 7 | Sale Price: $2.99 | Normal Price: $19.99 | Savings: 85.042521% | Deal Rating: 10.0
-24. Metro 2033 Redux | StoreID: 7 | Sale Price: $2.99 | Normal Price: $19.99 | Savings: 85.042521% | Deal Rating: 9.9
-25. Marvels Midnight Suns Digital Edition | StoreID: 25 | Sale Price: $15.99 | Normal Price: $79.99 | Savings: 80.010001% | Deal Rating: 9.9
-26. Gotham Knights: Deluxe | StoreID: 25 | Sale Price: $15.99 | Normal Price: $79.99 | Savings: 80.010001% | Deal Rating: 9.9
-27. Tiny Tinas Wonderlands: Chaotic Great Edition | StoreID: 25 | Sale Price: $15.99 | Normal Price: $79.99 | Savings: 80.010001% | Deal Rating: 9.9
-28. Assassin's Creed Odyssey - Deluxe Edition | StoreID: 25 | Sale Price: $15.99 | Normal Price: $79.99 | Savings: 80.010001% | Deal Rating: 9.9
-29. Destiny 2: Legacy Collection (2024) | StoreID: 24 | Sale Price: $7.0 | Normal Price: $69.99 | Savings: 89.998571% | Deal Rating: 9.9
-30. Homeworld Remastered Collection | StoreID: 7 | Sale Price: $3.49 | Normal Price: $34.99 | Savings: 90.025722% | Deal Rating: 9.9
-31. Sid Meiers Civilization VI | StoreID: 11 | Sale Price: $2.99 | Normal Price: $59.99 | Savings: 95.015836% | Deal Rating: 9.9
-32. Red Dead Redemption 2: Ultimate Edition | StoreID: 29 | Sale Price: $20.0 | Normal Price: $99.99 | Savings: 79.998% | Deal Rating: 9.9
-33. Need for Speed Unbound Ultimate Collection | StoreID: 25 | Sale Price: $16.99 | Normal Price: $84.99 | Savings: 80.009413% | Deal Rating: 9.9
-34. Riders Republic 360 Edition | StoreID: 3 | Sale Price: $17.6 | Normal Price: $79.99 | Savings: 77.99725% | Deal Rating: 9.8
-35. FOR HONOR  Ultimate Edition | StoreID: 25 | Sale Price: $17.99 | Normal Price: $89.99 | Savings: 80.00889% | Deal Rating: 9.8
-36. Back 4 Blood: Deluxe Edition | StoreID: 24 | Sale Price: $9.0 | Normal Price: $89.99 | Savings: 89.998889% | Deal Rating: 9.8
-37. Destiny 2: The Witch Queen | StoreID: 25 | Sale Price: $2.39 | Normal Price: $29.99 | Savings: 92.030677% | Deal Rating: 9.8
-38. Sid Meiers Civilization VI | StoreID: 21 | Sale Price: $2.78 | Normal Price: $59.99 | Savings: 95.365894% | Deal Rating: 9.8
-39. Back 4 Blood: Ultimate Edition | StoreID: 24 | Sale Price: $10.0 | Normal Price: $99.99 | Savings: 89.999% | Deal Rating: 9.8
-40. Suicide Squad: Kill the Justice League - Digital Deluxe Edition | StoreID: 24 | Sale Price: $10.0 | Normal Price: $99.99 | Savings: 89.999% | Deal Rating: 9.8
-41. Red Dead Redemption 2: Ultimate Edition | StoreID: 27 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
-42. Watch Dogs: Legion Gold Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
-43. Marvels Midnight Suns Legendary Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
-44. Red Dead Redemption 2: Ultimate Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
-45. Ghost Recon Breakpoint Gold Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
-46. Assassins Creed Odyssey Gold Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
-47. Tom Clancys Ghost Recon Wildlands Ultimate Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
-48. Sid Meiers Civilization VI | StoreID: 25 | Sale Price: $5.99 | Normal Price: $59.99 | Savings: 90.015003% | Deal Rating: 9.7
-49. Wavetale | StoreID: 1 | Sale Price: $1.49 | Normal Price: $29.99 | Savings: 95.031677% | Deal Rating: 9.7
-50. Assassins Creed Valhalla and Watch Dogs: Legion Bundle | StoreID: 25 | Sale Price: $21.99 | Normal Price: $109.99 | Savings: 80.007273% | Deal Rating: 9.7
+24. Warhammer 40K Bundle | StoreID: 7 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 10.0
+25. Metro 2033 Redux | StoreID: 7 | Sale Price: $2.99 | Normal Price: $19.99 | Savings: 85.042521% | Deal Rating: 9.9
+26. Marvels Midnight Suns Digital Edition | StoreID: 25 | Sale Price: $15.99 | Normal Price: $79.99 | Savings: 80.010001% | Deal Rating: 9.9
+27. Gotham Knights: Deluxe | StoreID: 25 | Sale Price: $15.99 | Normal Price: $79.99 | Savings: 80.010001% | Deal Rating: 9.9
+28. Tiny Tinas Wonderlands: Chaotic Great Edition | StoreID: 25 | Sale Price: $15.99 | Normal Price: $79.99 | Savings: 80.010001% | Deal Rating: 9.9
+29. Assassin's Creed Odyssey - Deluxe Edition | StoreID: 25 | Sale Price: $15.99 | Normal Price: $79.99 | Savings: 80.010001% | Deal Rating: 9.9
+30. Destiny 2: Legacy Collection (2024) | StoreID: 24 | Sale Price: $7.0 | Normal Price: $69.99 | Savings: 89.998571% | Deal Rating: 9.9
+31. Homeworld Remastered Collection | StoreID: 7 | Sale Price: $3.49 | Normal Price: $34.99 | Savings: 90.025722% | Deal Rating: 9.9
+32. Sid Meiers Civilization VI | StoreID: 11 | Sale Price: $2.99 | Normal Price: $59.99 | Savings: 95.015836% | Deal Rating: 9.9
+33. Red Dead Redemption 2: Ultimate Edition | StoreID: 29 | Sale Price: $20.0 | Normal Price: $99.99 | Savings: 79.998% | Deal Rating: 9.9
+34. Need for Speed Unbound Ultimate Collection | StoreID: 25 | Sale Price: $16.99 | Normal Price: $84.99 | Savings: 80.009413% | Deal Rating: 9.9
+35. Riders Republic 360 Edition | StoreID: 3 | Sale Price: $17.6 | Normal Price: $79.99 | Savings: 77.99725% | Deal Rating: 9.8
+36. FOR HONOR  Ultimate Edition | StoreID: 25 | Sale Price: $17.99 | Normal Price: $89.99 | Savings: 80.00889% | Deal Rating: 9.8
+37. Back 4 Blood: Deluxe Edition | StoreID: 24 | Sale Price: $9.0 | Normal Price: $89.99 | Savings: 89.998889% | Deal Rating: 9.8
+38. Destiny 2: The Witch Queen | StoreID: 25 | Sale Price: $2.39 | Normal Price: $29.99 | Savings: 92.030677% | Deal Rating: 9.8
+39. Sid Meiers Civilization VI | StoreID: 21 | Sale Price: $2.78 | Normal Price: $59.99 | Savings: 95.365894% | Deal Rating: 9.8
+40. Back 4 Blood: Ultimate Edition | StoreID: 24 | Sale Price: $10.0 | Normal Price: $99.99 | Savings: 89.999% | Deal Rating: 9.8
+41. Suicide Squad: Kill the Justice League - Digital Deluxe Edition | StoreID: 24 | Sale Price: $10.0 | Normal Price: $99.99 | Savings: 89.999% | Deal Rating: 9.8
+42. Red Dead Redemption 2: Ultimate Edition | StoreID: 27 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
+43. Watch Dogs: Legion Gold Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
+44. Marvels Midnight Suns Legendary Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
+45. Red Dead Redemption 2: Ultimate Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
+46. Ghost Recon Breakpoint Gold Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
+47. Assassins Creed Odyssey Gold Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
+48. Tom Clancys Ghost Recon Wildlands Ultimate Edition | StoreID: 25 | Sale Price: $19.99 | Normal Price: $99.99 | Savings: 80.008001% | Deal Rating: 9.7
+49. Sid Meiers Civilization VI | StoreID: 25 | Sale Price: $5.99 | Normal Price: $59.99 | Savings: 90.015003% | Deal Rating: 9.7
+50. Wavetale | StoreID: 1 | Sale Price: $1.49 | Normal Price: $29.99 | Savings: 95.031677% | Deal Rating: 9.7
