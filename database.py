@@ -177,6 +177,11 @@ def clear_deals_table():
     conn.commit()
     conn.close()
     
+def print_to_text_file(deals, filename="deals.txt"):
+    with open(filename, "w") as f:
+        for i, deal in enumerate(deals, 1):
+            f.write(f"{i}. {deal['title']} | StoreID: {deal['storeID']} | Sale Price: ${deal['salePrice']} | Normal Price: ${deal['normalPrice']} | Savings: {deal['savings']}% | Deal Rating: {deal['dealRating']}\n")
+    
 # ----------------------------------------------------------------------------------------
 # Database section for emails
 
