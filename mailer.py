@@ -1,7 +1,7 @@
 import smtplib
 from email.message import EmailMessage
 from request_deals import top_deals
-#from database import get_emails, insert_email, create_email_table
+from database import get_emails, insert_email, create_email_table
 # import time
 
 
@@ -48,7 +48,7 @@ def send_outlook_email(subject, body, to):
 
 # for demo purposes, not using loop to send emails
 #time.sleep(86400)
-#mailer_list = get_emails()
-#for x in mailer_list:
-send_outlook_email("New Deals!", format_email(deals), receiver_email)
+mailer_list = get_emails()
+for x in mailer_list:
+    send_outlook_email("New Deals!", format_email(deals), receiver_email)
 
