@@ -50,5 +50,5 @@ def send_outlook_email(subject, body, to):
 #time.sleep(86400)
 mailer_list = get_emails()
 for x in mailer_list:
-    send_outlook_email("New Deals!", format_email(deals), receiver_email)
+    send_outlook_email("New Deals!", format_email(deals), x)
 
