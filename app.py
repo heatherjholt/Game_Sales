@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, jsonify
 import requests
 from request_deals import search_games
 from database import create_deals_table, store_deals, get_top_50_deals, insert_deal, search_games_database
-from database import clear_deals_table
+from database import clear_deals_table, print_to_text_file
 app = Flask(__name__)
 
 
@@ -71,4 +71,6 @@ if __name__ in "__main__":
     create_deals_table()
     clear_deals_table()
     store_deals()
+    deals = get_top_50_deals()
+    print_to_text_file(deals)
     app.run(debug=True)
