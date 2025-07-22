@@ -75,8 +75,8 @@ def subscribe():
     email = request.form.get('email')
     if email:
         insert_email(email)
-        emailing()
-        return redirect(url_for('index'))
+        #emailing()
+        return redirect(url_for('index')), emailing()
     
     
 
