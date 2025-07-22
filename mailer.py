@@ -25,10 +25,6 @@ smtp_server = "smtp.gmail.com"
 EMAIL_ADDRESS = "CheapSnake2025@gmail.com"
 EMAIL_PASSWORD = "nisd dmht nkqm rmuw"
 
-receiver_email = input("Enter Email: ")
-# For test purposes not including adding to database
-#insert_email(receiver_email) 
-
 
 def send_outlook_email(subject, body, to):
     msg = EmailMessage()
@@ -46,9 +42,14 @@ def send_outlook_email(subject, body, to):
         smtp.send_message(msg)
         print("Email sent via Gmail!")
 
-# for demo purposes, not using loop to send emails
-#time.sleep(86400)
-mailer_list = get_emails()
-for x in mailer_list:
-    send_outlook_email("New Deals!", format_email(deals), x)
+def emailing():
+    receiver_email = input("Enter Email: ")
+    # For test purposes not including adding to database
+    #insert_email(receiver_email) 
+    
+    # for demo purposes, not using loop to send emails
+    #time.sleep(86400)
+    mailer_list = get_emails()
+    for x in mailer_list:
+        send_outlook_email("New Deals!", format_email(deals), x)
 
