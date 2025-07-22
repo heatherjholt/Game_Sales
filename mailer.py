@@ -1,7 +1,9 @@
 import smtplib
 from email.message import EmailMessage
 from request_deals import top_deals
-from database import get_emails, insert_email, create_email_table
+#from database import get_emails, insert_email, create_email_table
+import time
+
 
 deals = top_deals(10)
 
@@ -35,7 +37,6 @@ def send_outlook_email(subject, body, to):
     msg['To'] = to
     msg.set_content(body)
     
-
     # Connect to Outlook SMTP server
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
         smtp.ehlo()
@@ -46,6 +47,7 @@ def send_outlook_email(subject, body, to):
         print("Email sent via Gmail!")
 
 # for demo purposes, not using loop to send emails
+#time.sleep(86400)
 #mailer_list = get_emails()
 #for x in mailer_list:
 send_outlook_email("New Deals!", format_email(deals), receiver_email)
