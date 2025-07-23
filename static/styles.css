@@ -22,7 +22,7 @@ body {
     align-items: center;
     font-family: 'Courier New', Courier, monospace, sans-serif;
     color: black; 
-    padding: 2em;
+    padding: 2em 250px 2em 2em;
 }
 
 body::after {
