@@ -243,6 +243,10 @@ img[alt="Store Logo"] {
   background-color: #666;
 }
 
+
+
+
+
 .card-grid {
   display: flex;
   flex-wrap: wrap;
@@ -251,7 +255,7 @@ img[alt="Store Logo"] {
 }
 
 .card-list {
-  display: none;
+  /*display: none;*/
   flex-direction: column;
   gap: 1em;
   align-items: stretch;
@@ -281,6 +285,12 @@ img[alt="Store Logo"] {
 .card-list .card-hover {
   display: none !important; /* disable hover in list view */
 }
+
+#gridWrapper,
+#listWrapper {
+  display: block;
+}
+
 
 
 
@@ -423,3 +433,45 @@ img[alt="Store Logo"] {
 
 
 
+
+
+.view-wrapper {
+  position: relative;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  max-width: 1200px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.view-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: rgba(42, 1, 97, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  z-index: 0;
+}
+
+.grid-wrapper .card-grid,
+.list-wrapper .card-list {
+  position: relative;
+  z-index: 1;
+}
+
+
+.card,
+.deal-row {
+  background: rgba(3, 3, 3, 0.7);
+  border-radius: 8px;
+}
+
+
+.hidden { display: none !important; }
+
+.view-wrapper { display: none; }
+#gridWrapper { display: block; }

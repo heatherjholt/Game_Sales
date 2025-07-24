@@ -57,6 +57,10 @@
         <button onclick="setView('list')">List View</button>
         </div>
 
+
+<section class="deals-section">
+
+<div id="gridWrapper" class="view-wrapper grid-wrapper">
         <ul class="card-grid">
         {% for deal in deals %}
             <li class="card">
@@ -133,7 +137,9 @@
             </li>
         {% endfor %}
         </ul>
+</div>
 
+<div id="listWrapper" class="view-wrapper list-wrapper" style="display: none;">
         <ul class="card-list">
                     {% for deal in deals %}
                         <li class="card">
@@ -177,6 +183,8 @@
                         </li>
                     {% endfor %}
                 </ul>
+</div>
+</section>
 
 
     {% endif %}

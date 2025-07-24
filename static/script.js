@@ -22,16 +22,18 @@ $(document).ready(function () {
 });
 
 // toggle list/grid
-function setView(view) {
-  const grid = document.querySelector('.card-grid');
-  const list = document.querySelector('.card-list');
+const gridWrapper = document.getElementById('gridWrapper');
+const listWrapper = document.getElementById('listWrapper');
 
-  if (view === 'grid') {
-    grid.style.display = 'flex';
-    list.style.display = 'none';
-  } else {
-    grid.style.display = 'none';
-    list.style.display = 'flex';
+  function setView(view) {
+    const grid = document.getElementById('gridWrapper');
+    const list = document.getElementById('listWrapper');
+
+    if (view === 'grid') {
+      grid.style.display = 'block';
+      list.style.display = 'none';
+    } else {
+      grid.style.display = 'none';
+      list.style.display = 'block';
+    }
   }
-}
-
