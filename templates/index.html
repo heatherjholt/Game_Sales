@@ -73,8 +73,24 @@
 
                 <div class="card-info">
                 <h3>{{ deal.title }}</h3>
-                <p><strong>${{ "%.2f"|format(deal.salePrice|float) }}</strong></p>
+                <p class="price-line">
+                    <!-- original price, struck-through -->
+                    <span class="original-price">
+                    ${{ "%.2f"|format(deal.normalPrice|float) }}
+                    </span>
+                    <!-- sale price -->
+                    <span class="sale-price">
+                    ${{ "%.2f"|format(deal.salePrice|float) }}
+                    </span>
+                    <!-- percent off -->
+                    {% if deal.savings %}
+                    <span class="discount">
+                        ({{ "%.0f"|format(deal.savings|float) }}% off)
+                    </span>
+                    {% endif %}
+                </p>
                 </div>
+
 
                 <div class="card-hover">
                 <div class="hover-info">

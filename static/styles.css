@@ -395,3 +395,31 @@ img[alt="Store Logo"] {
 .email-signup button:hover {
   background-color: #6a0dad;
 }
+
+
+.price-line {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  align-items: baseline;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #aaa;
+  font-size: 0.9em;
+}
+
+.sale-price {
+  font-weight: bold;
+  color: #32cd32;
+}
+
+.discount {
+  font-size: 0.85em;
+  color: #ff7675;
+}
+
+
+
