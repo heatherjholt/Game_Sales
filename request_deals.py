@@ -1,6 +1,4 @@
 import requests
-import csv
-import json
 
 API_URL = "https://www.cheapshark.com/api/1.0"
 DEALS_URL = f"{API_URL}/deals"
@@ -33,23 +31,3 @@ def top_deals(n):
     resp = requests.get(DEALS_URL, params={"pageSize": n}, timeout = 10)
     resp.raise_for_status()
     return resp.json()
-
-
-# Some testing stuff
-def main():
-    user_top = int(input("Enter the number top deals you wish to gaze upon: "))
-    print("Your wish is my command here are the top ", user_top, ":")
-    results = top_deals(user_top)
-    print(json.dumps(results, indent = 2))
-    title = input("Don't like these options? Search any title (must be exact match): ")
-    games = search_games(title)
-    cheapest_entry = return_cheapest_entry(games)
-    best_rating = return_highest_rating(games)
-    print(json.dumps(games, indent = 2))
-    print("Cheapest Entry is: \n")
-    print(json.dumps(cheapest_entry, indent = 2))
-    print("Best Rating:")
-    print(json.dumps(best_rating, indent = 2))
-    
-if __name__ == "__main__":
-    main()

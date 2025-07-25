@@ -1,6 +1,5 @@
-from request_deals import search_games, top_deals
+from request_deals import top_deals
 import sqlite3
-import requests
 
 # Function that creates the table in the database for deals
 def create_deals_table():
@@ -110,6 +109,7 @@ def search_games_database(title, limit=50):
     conn.close()
     return deals
 
+# Function that sorts by alphabetical order using database sorting
 def sort_by_alphabetical(limit=50):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
@@ -122,6 +122,7 @@ def sort_by_alphabetical(limit=50):
     conn.close()
     return deals
 
+# Function that sorts by games' sales price
 def sort_by_sales_price(limit=50):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
@@ -134,6 +135,7 @@ def sort_by_sales_price(limit=50):
     conn.close()
     return deals
 
+# Sort by normal or original price
 def sort_by_normal_price(limit=50):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
@@ -146,6 +148,7 @@ def sort_by_normal_price(limit=50):
     conn.close()
     return deals
 
+# Sort by deal rating, which is the default, but needed if user wants to resort by deal rating
 def sort_by_deal_rating(limit=50):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
@@ -158,6 +161,7 @@ def sort_by_deal_rating(limit=50):
     conn.close()
     return deals
 
+# Sort by the amount of money saved
 def sort_by_savings(limit=50):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
@@ -170,13 +174,15 @@ def sort_by_savings(limit=50):
     conn.close()
     return deals
 
+# Clear the table of deals
 def clear_deals_table():
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
     table.execute("DELETE FROM deals")
     conn.commit()
     conn.close()
-    
+
+# Testing function
 def print_to_text_file(deals, filename="deals.txt"):
     with open(filename, "w") as f:
         for i, deal in enumerate(deals, 1):
@@ -210,7 +216,7 @@ def insert_email(email):
     conn.commit()
     conn.close()
 
-# Helper function to look at the database
+# Function that gets the emails and returns them to send emails to
 def get_emails():
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()

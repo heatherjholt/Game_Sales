@@ -3,20 +3,20 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import requests
 from request_deals import search_games
+# For database functions
 from database import create_deals_table, store_deals, get_top_50_deals, insert_deal, search_games_database
-from database import clear_deals_table, print_to_text_file
+from database import clear_deals_table, create_email_table, insert_email
+from database import sort_by_alphabetical, sort_by_deal_rating, sort_by_normal_price, sort_by_sales_price
+from database import sort_by_savings
 #for email subscription 
-from database import create_deals_table, clear_deals_table, store_deals, get_top_50_deals, create_email_table, insert_email
 from mailer import emailing
-from database import get_top_50_deals, sort_by_alphabetical, sort_by_deal_rating, sort_by_normal_price, sort_by_sales_price, sort_by_savings, search_games_database
 
 app = Flask(__name__)
-
 
 #api url for the games and deals
 GAMES_API = "https://www.cheapshark.com/api/1.0/games"
 STORES_API = "https://www.cheapshark.com/api/1.0/stores"
-
+RESULTS_PER_PAGE = 50
 
 #maps store names to their to ids
 def get_store_map():
@@ -33,7 +33,6 @@ def get_store_map():
     return {}
 store_map = get_store_map()
 
-
 #shows home page with top deals and search option 
 #get pulls top 50 deals, post searches for title directly 
 @app.route("/", methods=["GET"])
@@ -41,11 +40,11 @@ def index():
     #deals = get_top_50_deals()
     sort = request.args.get("sort", "")
     view = request.args.get("view", "grid")
-    if   sort == "alpha":   deals = sort_by_alphabetical(50)
-    elif sort == "sale":    deals = sort_by_sales_price(50)
-    elif sort == "original": deals = sort_by_normal_price(50)
-    elif sort == "savings": deals = sort_by_savings(50)
-    elif sort == "rating":  deals = sort_by_deal_rating(50)
+    if   sort == "alpha":   deals = sort_by_alphabetical(RESULTS_PER_PAGE)
+    elif sort == "sale":    deals = sort_by_sales_price(RESULTS_PER_PAGE)
+    elif sort == "original": deals = sort_by_normal_price(RESULTS_PER_PAGE)
+    elif sort == "savings": deals = sort_by_savings(RESULTS_PER_PAGE)
+    elif sort == "rating":  deals = sort_by_deal_rating(RESULTS_PER_PAGE)
     else:                   deals = get_top_50_deals()
     #TESTING print(deals[6])
     return render_template(
@@ -94,14 +93,10 @@ def subscribe():
         insert_email(email)
         #emailing()
         return redirect(url_for('index')), emailing()
-    
-    
 
 if __name__ in "__main__":
     create_email_table() 
     create_deals_table()
     clear_deals_table()
     store_deals()
-    deals = get_top_50_deals()
-    print_to_text_file(deals)
     app.run(debug=True)

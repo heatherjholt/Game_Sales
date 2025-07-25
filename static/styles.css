@@ -120,9 +120,6 @@ img[alt="Store Logo"] {
     color: #666;
 }
 
-
-
-
 .card-grid {
   display: flex;
   flex-wrap: wrap;
@@ -180,7 +177,6 @@ img[alt="Store Logo"] {
   backdrop-filter: blur(3px);
 }
 
-
 .card:hover .card-hover {
   opacity: 1;
 }
@@ -199,7 +195,6 @@ img[alt="Store Logo"] {
   text-align: center;
   z-index: 2;
 }
-
 
 .buy-button:hover {
   background-color: #28a428;
@@ -222,7 +217,6 @@ img[alt="Store Logo"] {
   object-fit: contain;  /* maintains aspect ratio */
 }
 
-
 /* toggle grid vs list styling */
 .view-toggle {
   text-align: center;
@@ -242,10 +236,6 @@ img[alt="Store Logo"] {
 .view-toggle button:hover {
   background-color: #666;
 }
-
-
-
-
 
 .card-grid {
   display: flex;
@@ -290,9 +280,6 @@ img[alt="Store Logo"] {
 #listWrapper {
   display: block;
 }
-
-
-
 
 .top-controls {
   display: flex;
@@ -406,7 +393,6 @@ img[alt="Store Logo"] {
   background-color: #6a0dad;
 }
 
-
 .price-line {
   display: flex;
   justify-content: center;
@@ -430,10 +416,6 @@ img[alt="Store Logo"] {
   font-size: 0.85em;
   color: #ff7675;
 }
-
-
-
-
 
 .view-wrapper {
   position: relative;
@@ -470,19 +452,16 @@ img[alt="Store Logo"] {
   z-index: 1;
 }
 
-
 .card,
 .deal-row {
   background: rgba(3, 3, 3, 0.7);
   border-radius: 8px;
 }
 
-
 .hidden { display: none !important; }
 
 .view-wrapper { display: none; }
 #gridWrapper { display: block; }
-
 
 .table-container {
   width: 100%;
@@ -494,18 +473,21 @@ img[alt="Store Logo"] {
   justify-content: center;
   margin: .5rem 0;
 }
+
 .deal-table {
   min-width: 900px;
   width: 100%;
   border-collapse: collapse;
   margin: 0 auto 2em;
 }
+
 .deal-table th,
 .deal-table td {
   border: 1px solid #444;
   padding: 0.5em;
   text-align: center;
 }
+
 .deal-table thead {
   background-color: #2a2a2a;
   color: #fff;
