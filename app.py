@@ -8,6 +8,8 @@ from database import clear_deals_table, print_to_text_file
 #for email subscription 
 from database import create_deals_table, clear_deals_table, store_deals, get_top_50_deals, create_email_table, insert_email
 from mailer import emailing
+from database import get_top_50_deals, sort_by_alphabetical, sort_by_deal_rating, sort_by_normal_price, sort_by_sales_price, sort_by_savings, search_games_database
+
 app = Flask(__name__)
 
 
@@ -36,9 +38,24 @@ store_map = get_store_map()
 #get pulls top 50 deals, post searches for title directly 
 @app.route("/", methods=["GET"])
 def index():
-    deals = get_top_50_deals()
+    #deals = get_top_50_deals()
+    sort = request.args.get("sort", "")
+    view = request.args.get("view", "grid")
+    if   sort == "alpha":   deals = sort_by_alphabetical(50)
+    elif sort == "sale":    deals = sort_by_sales_price(50)
+    elif sort == "original": deals = sort_by_normal_price(50)
+    elif sort == "savings": deals = sort_by_savings(50)
+    elif sort == "rating":  deals = sort_by_deal_rating(50)
+    else:                   deals = get_top_50_deals()
     #TESTING print(deals[6])
-    return render_template("index.html", deals=deals, store_map=store_map, title="Top 50 Deals") 
+    return render_template(
+      "index.html",
+      deals=deals,
+      sort=sort,
+      view=view, 
+      store_map=store_map,
+      title="Top 50 Deals"
+    )
 
 @app.route("/search", methods=["GET", "POST"])
 def search():

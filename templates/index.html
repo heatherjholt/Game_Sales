@@ -9,11 +9,19 @@
     <script src="{{ url_for('static', filename='script.js') }}"></script><!--loads js file-->
 </head>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Flask has injected either "grid" or "list" into view
+    setView("{{ view }}");
+  });
+</script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
 <body>
 
 <header class="banner">
   <div class="banner-inner">
-    <img src="{{ url_for('static', filename='banner2.png') }}"
+    <img src="{{ url_for('static', filename='bannerround.png') }}"
          alt="Snake Logo" class="banner-logo">
   </div>
 </header>
@@ -21,7 +29,9 @@
 
     <!--home button, search box, and view toggle-->
     <div class="top-controls">
-        <a href="/" class="home-button">🐍 Home</a>
+        <a href="{{ url_for('index', view='grid') }}" class="home-button">
+  🐍 Home
+</a></div>
     <div class="top-row">
             <form method="POST" action="/search" class="search-form">
             <div class="autocomplete-container">
@@ -31,7 +41,7 @@
             <button type="submit">Ssssearch...</button>
             </form>
     </div>
-    </div>
+
 
     <!--PREV METHOD:search box, pulls suggestions from script.js for autocomplete
 
@@ -59,6 +69,23 @@
 
 
 <section class="deals-section">
+
+
+<!-- GRID SORT CONTROLS -->
+<form id="sortControlsGrid" method="get" class="sort-controls">
+  <label for="sortSelect">Sort by:</label>
+  <select name="sort" id="sortSelect" onchange="this.form.submit()">
+    <option value=""    {% if not sort %}selected{% endif %}></option>
+    <option value="alpha"   {% if sort=='alpha'   %}selected{% endif %}>Name (A→Z)</option>
+    <option value="sale"    {% if sort=='sale'    %}selected{% endif %}>Sale Price (Low→High)</option>
+    <option value="original" {% if sort=='original' %}selected{% endif %}>Original Price (Low→High)</option>
+    <option value="rating"  {% if sort=='rating'  %}selected{% endif %}>Deal Rating</option>
+    <option value="savings" {% if sort=='savings' %}selected{% endif %}>Savings (%)</option>
+  </select>
+</form>
+
+
+    
 
 <div id="gridWrapper" class="view-wrapper grid-wrapper">
         <ul class="card-grid">
@@ -140,49 +167,65 @@
 </div>
 
 <div id="listWrapper" class="view-wrapper list-wrapper" style="display: none;">
-        <ul class="card-list">
-                    {% for deal in deals %}
-                        <li class="card">
-                        <div class="card-image-container">
-                            {% if deal.steamAppID %}
-                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/{{ deal.steamAppID }}/header.jpg" alt="Steam Banner">
-                            {% elif deal.thumb %}
-                            <img src="{{ deal.thumb }}" alt="Thumbnail">
-                            {% else %}
-                            <div style="color:#888; padding:2em;">No Image</div>
-                            {% endif %}
-                        </div>
+        <!-- LIST VIEW: TABLE -->
+<table class="deal-table">
+<thead>
+  <tr>
+    <th>
+      <a href="?sort=alpha&view=list" class="{{ 'active' if sort=='alpha' else '' }}">
+        Title
+      </a>
+    </th>
+    <th>
+      <a href="?sort=sale&view=list" class="{{ 'active' if sort=='sale' else '' }}">
+        Sale Price
+      </a>
+    </th>
+    <th>
+      <a href="{{ url_for('index', sort='original', view='list') }}"
+         class="{{ 'active' if sort=='original' else '' }}">
+        Original Price
+      </a>
+    <th>
+    <a href="?sort=original&view=list"
+        class="{{ 'active' if sort=='original' else '' }}">
+        Original Price
+    </a
+    <th>
+      <a href="?sort=savings&view=list" class="{{ 'active' if sort=='savings' else '' }}">
+        Savings
+      </a>
+    </th>
+    <th>
+      <a href="?sort=rating&view=list" class="{{ 'active' if sort=='rating' else '' }}">
+        Deal Rating
+      </a>
+    </th>
+    <th>Purchase</th>
+  </tr>
+</thead>
 
-                        <div class="card-info">
-                            <h3>{{ deal.title }}</h3>
-                            <p><strong>Sale Price:</strong> ${{ "%.2f"|format(deal.salePrice|float) }}</p>
-                            <p><strong>Original Price:</strong> ${{ "%.2f"|format(deal.normalPrice|float) }}</p>
-                            {% if deal.dealRating %}
-                            {% if deal.savings %}
-                                <p><strong>Discount:</strong> {{ "%.0f"|format(deal.savings|float) }}% Off</p>
-                            {% endif %}
-                            <p><strong>Deal Rating:</strong> {{ deal.dealRating|int if deal.dealRating == 10 else "%.1f"|format(deal.dealRating|float) }}/10</p>
-                            {% endif %}
-                            {% if deal.steamRatingText and deal.steamRatingPercent %}
-                            <p><strong>Steam Rating:</strong> {{ deal.steamRatingText }} ({{ deal.steamRatingPercent }}%)</p>
-                            {% endif %}
+  <tbody>
+    {% for deal in deals %}
+    <tr>
+      <td>{{ deal.title }}</td>
+      <td>${{ "%.2f"|format(deal.salePrice|float) }}</td>
+      <td>${{ "%.2f"|format(deal.normalPrice|float) }}</td>
+      <td>{{ "%.0f"|format(deal.savings|float) }}%</td>
+      <td>
+        {% set r = deal.dealRating|float %}
+        {{ r == 10 and '10' or '%.1f'|format(r) }}/10
+      </td>
+      <td>
+        <a class="buy-button" href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
+          🛒 Purchase
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
-                            {% if deal.metacriticScore %}
-                            <p><strong>Metacritic Rating:</strong> {{ deal.metacriticScore }}</p>
-                            {% endif %}
-
-                            {% set store = store_map.get(deal.storeID, {}) %}
-                            {% if store %}
-                            <p>
-                                <img src="https://www.cheapshark.com{{ store.images.icon }}" style="height: 20px; vertical-align: middle;">
-                                {{ store.storeName }}
-                            </p>
-                            {% endif %}
-                            <a class="buy-button" href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">🛒 Purchase</a>
-                        </div>
-                        </li>
-                    {% endfor %}
-                </ul>
 </div>
 </section>
 
