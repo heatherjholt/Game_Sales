@@ -27,13 +27,6 @@
   </div>
 </header>
     <!--<h1>Cheap_Snake Game Deals</h1>-->
-
-    <!--home button, search box, and view toggle-->
-    <div class="top-controls">
-        <a href="{{ url_for('index', view='grid') }}" class="home-button">
-  🐍 Home
-</a></div>
-
     <!--PREV METHOD:search box with autosuggest
     <div class="top-row">
             <form method="POST" action="/search" class="search-form">
@@ -53,6 +46,12 @@
         <ul id="suggestions" class="suggestions"></ul>
     </form> 
     -->
+        <!--home button, search box, and view toggle-->
+    <div class="top-controls">
+        <a href="{{ url_for('index', view='grid') }}" class="home-button">
+            🐍 Home
+        </a>
+    </div>
     <!--SEARCH BAR: credit to https://uiverse.io/benjimich/lucky-baboon-4-->
     <div class="top-row">
         <form method="POST" action="/search" class="custom-search-form">
@@ -220,11 +219,13 @@
     <tr>
         <td class="title-with-thumb">
         <div class="thumb-wrapper">
+            <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
             {% if deal.steamAppID %}
             <img class="list-thumb" src="https://cdn.cloudflare.steamstatic.com/steam/apps/{{ deal.steamAppID }}/capsule_sm_120.jpg" alt="Game Thumbnail">
             {% elif deal.thumb %}
             <img class="list-thumb" src="{{ deal.thumb }}" alt="Game Thumbnail">
             {% endif %}
+            </a>
         </div>
         <span>{{ deal.title }}</span>
         </td>
