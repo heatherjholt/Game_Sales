@@ -438,11 +438,12 @@ img[alt="Store Logo"] {
 .view-wrapper {
   position: relative;
   margin: 2rem auto;
-  padding: 1.5rem;
-  max-width: 1200px;
+  padding: 1rem;
+  max-width: 100%;
   width: 100%;
   border-radius: 16px;
-  overflow: hidden;
+  overflow-x: auto;
+  box-sizing: border-box;
 }
 
 .view-wrapper::before {
@@ -483,7 +484,10 @@ img[alt="Store Logo"] {
 #gridWrapper { display: block; }
 
 
-
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
 
 .sort-controls {
   display: flex;
@@ -491,6 +495,7 @@ img[alt="Store Logo"] {
   margin: .5rem 0;
 }
 .deal-table {
+  min-width: 900px;
   width: 100%;
   border-collapse: collapse;
   margin: 0 auto 2em;
@@ -533,3 +538,39 @@ img[alt="Store Logo"] {
   justify-content: center; 
 }
 
+
+
+.title-with-thumb {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  justify-content: flex-start;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 1; 
+}
+
+.thumb-wrapper {
+  width: 80px;
+  height: 45px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.list-thumb {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.deal-table td {
+  vertical-align: middle;
+  height: 60px;
+  padding: 0.5em 0.75em;
+}

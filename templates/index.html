@@ -168,6 +168,7 @@
 
 <div id="listWrapper" class="view-wrapper list-wrapper" style="display: none;">
         <!-- LIST VIEW: TABLE -->
+         <div class="table-container">
 <table class="deal-table">
 <thead>
   <tr>
@@ -186,14 +187,10 @@
          class="{{ 'active' if sort=='original' else '' }}">
         Original Price
       </a>
-    <th>
-    <a href="?sort=original&view=list"
-        class="{{ 'active' if sort=='original' else '' }}">
-        Original Price
-    </a
+    </th>
     <th>
       <a href="?sort=savings&view=list" class="{{ 'active' if sort=='savings' else '' }}">
-        Savings
+        Discount
       </a>
     </th>
     <th>
@@ -208,24 +205,33 @@
   <tbody>
     {% for deal in deals %}
     <tr>
-      <td>{{ deal.title }}</td>
-      <td>${{ "%.2f"|format(deal.salePrice|float) }}</td>
-      <td>${{ "%.2f"|format(deal.normalPrice|float) }}</td>
-      <td>{{ "%.0f"|format(deal.savings|float) }}%</td>
-      <td>
-        {% set r = deal.dealRating|float %}
-        {{ r == 10 and '10' or '%.1f'|format(r) }}/10
-      </td>
-      <td>
-        <a class="buy-button" href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
-          🛒 Purchase
-        </a>
-      </td>
+        <td class="title-with-thumb">
+        <div class="thumb-wrapper">
+            {% if deal.steamAppID %}
+            <img class="list-thumb" src="https://cdn.cloudflare.steamstatic.com/steam/apps/{{ deal.steamAppID }}/capsule_sm_120.jpg" alt="Game Thumbnail">
+            {% elif deal.thumb %}
+            <img class="list-thumb" src="{{ deal.thumb }}" alt="Game Thumbnail">
+            {% endif %}
+        </div>
+        <span>{{ deal.title }}</span>
+        </td>
+        <td>${{ "%.2f"|format(deal.salePrice|float) }}</td>
+        <td>${{ "%.2f"|format(deal.normalPrice|float) }}</td>
+        <td>{{ "%.0f"|format(deal.savings|float) }}%</td>
+        <td>
+            {% set r = deal.dealRating|float %}
+            {{ r == 10 and '10' or '%.1f'|format(r) }}/10
+        </td>
+        <td>
+            <a class="buy-button" href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
+            🛒 Purchase
+            </a>
+        </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
-
+</div>
 </div>
 </section>
 
