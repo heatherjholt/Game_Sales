@@ -2,11 +2,11 @@ import smtplib
 from email.message import EmailMessage
 from request_deals import top_deals
 from database import get_emails, insert_email, create_email_table
-# import time
+import time
 
-
+# Pull top 10 deals from the request deals
 deals = top_deals(10)
-
+#format the email as one long string
 def format_email(deals):
     lines = "Here are today’s top CheapSnake deals:\n"
     for d in deals:
@@ -25,7 +25,6 @@ smtp_server = "smtp.gmail.com"
 EMAIL_ADDRESS = "CheapSnake2025@gmail.com"
 EMAIL_PASSWORD = "nisd dmht nkqm rmuw"
 
-
 def send_outlook_email(subject, body, to):
     msg = EmailMessage()
     msg['Subject'] = subject
@@ -35,21 +34,20 @@ def send_outlook_email(subject, body, to):
     
     # Connect to Outlook SMTP server
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-        smtp.ehlo()
-        smtp.starttls()  # Upgrade the connection to secure
-        smtp.ehlo()
-        smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-        smtp.send_message(msg)
-        print("Email sent via Gmail!")
+        smtp.ehlo() # Establish ehlo connection
+        smtp.starttls()  # Upgrade the connection to tls connection
+        smtp.ehlo() # Reinstate ehlo connection
+        smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD) # Login to email using app password
+        smtp.send_message(msg) # Email out the message
+        print("Email sent via Gmail!") # Confirm email was sent
 
 def emailing():
-    #receiver_email = input("Enter Email: ")
-    # For test purposes not including adding to database
-    #insert_email(receiver_email) 
-    
-    # for demo purposes, not using loop to send emails
-    #time.sleep(86400)
+    # receiver_email = input("Enter Email: ") - was used for testing
+    # for demo purposes, not using time for emailing
     mailer_list = get_emails()
     for x in mailer_list:
         send_outlook_email("New Deals!", format_email(deals), x)
-
+# Infinite loop to wait 24 hours before sending deals
+#while True:
+ #   time.sleep(24*60*60) #24 hours x 60 minx 60 seconds
+ #   emailing()
