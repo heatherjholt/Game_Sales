@@ -1,18 +1,9 @@
 /* messing with perspective of background photo and weird header look to it */
 html, body {
-    height: 100%;
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    /* background-color: #130018;  solid color for testing, WILL CHANGE */
-    background-color: #5a2a9c;
-    background-image: url("/static/snake2.png"); 
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    background-attachment: fixed;
-    background-size: cover;
+  height: 100%;
+  font-family: monospace, sans-serif;
+  background: #5a2a9c url("/static/snake2.png") no-repeat bottom right fixed;
+  color: #efeff1;
 }
 
 /* background image, font/color */
@@ -22,7 +13,10 @@ body {
     align-items: center;
     font-family: 'Courier New', Courier, monospace, sans-serif;
     color: black; 
-    padding: 2em 250px 2em 2em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 body::after {
@@ -142,8 +136,17 @@ img[alt="Store Logo"] {
   transition: transform 0.2s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   color: white;
+    display: flex;
+  justify-content: center;  /* horizontal centering */
+  align-items: center;      /* vertical centering */
 }
-
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* center children horizontally */
+  justify-content: center;  /* center children vertically (if you want that) */
+  text-align: center;       /* center text */
+}
 .card:hover {
   transform: translateY(-5px);
 }
@@ -158,6 +161,9 @@ img[alt="Store Logo"] {
   padding: 0.8em;
   font-size: 0.95em;
   border-top: 1px solid #444;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card-hover {
@@ -168,17 +174,36 @@ img[alt="Store Logo"] {
   height: 100%;
   background-color: rgba(20, 20, 20, 0.97);
   color: #f5f5f5;
-  
   opacity: 0;
   transition: opacity 0.3s ease;
-  overflow-y: auto;
+  overflow-y: hidden;
   font-size: 0.9em;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 0.4em;
+  justify-content: center;
+  gap: 0.1em;
   backdrop-filter: blur(3px);
+}
+
+.hover-info {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hover-info p {
+  line-height: 1.1;
+  margin: 2px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  flex-direction: column;
 }
 
 .card:hover .card-hover {
@@ -186,7 +211,6 @@ img[alt="Store Logo"] {
 }
 
 .buy-button {
-
   padding: 0.4em 1em;
   background-color: #32cd32;
   color: white;
@@ -201,7 +225,7 @@ img[alt="Store Logo"] {
 }
 
 .buy-button:hover {
-  background-color: #28a428;
+  background-color: #004d00;
 }
 
 .card-image-container {
@@ -218,7 +242,9 @@ img[alt="Store Logo"] {
 .card-image-container img {
   height: 100%;
   width: auto;
-  object-fit: contain;  /* maintains aspect ratio */
+  object-fit: contain; 
+  display: block;
+  margin: 0 auto;
 }
 
 /* toggle grid vs list styling */
@@ -304,18 +330,8 @@ img[alt="Store Logo"] {
   justify-content: center;
   align-items: center;
   gap: 1em;
-  flex-wrap: wrap;
   margin-bottom: 2em;
-}
-
-.top-bar .home-button {
-  padding: 0.5em 1em;
-  background-color: #4b0082;
-  color: white;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  white-space: nowrap;
+  flex-wrap: wrap;
 }
 
 .search-bar {
@@ -324,14 +340,23 @@ img[alt="Store Logo"] {
   gap: 0;
 }
 
-
 .home-button {
-  padding: 0.5em 1em;
-  background-color: #4b0082;
-  color: white;
-  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  padding: 0 14px;
+  background-color: #53535f; 
+  color: #efeff1;
+  border: none;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Courier New', Courier, monospace;
   text-decoration: none;
-  font-weight: bold;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .autocomplete-container {
@@ -379,11 +404,6 @@ img[alt="Store Logo"] {
 
 .view-toggle button:hover {
   background-color: #666;
-}
-
-
-.top-controls, .top-row {
-    border-bottom: none;
 }
 
 .email-signup {
@@ -662,4 +682,26 @@ img[alt="Store Logo"] {
   width: 18px;
   height: 18px;
   display: block;
+}
+
+.custom-search-form {
+  width: auto;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 3rem; 
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem; 
+  text-align: center;
+  font-weight: bold;
+  color: #efeff1;   
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.sort-controls select option[disabled] {
+  color: #bbb;
 }

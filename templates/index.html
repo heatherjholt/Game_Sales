@@ -47,13 +47,12 @@
     </form> 
     -->
         <!--home button, search box, and view toggle-->
-    <div class="top-controls">
+    <div class="top-bar">
         <a href="{{ url_for('index', view='grid') }}" class="home-button">
             🐍 Home
         </a>
-    </div>
+
     <!--SEARCH BAR: credit to https://uiverse.io/benjimich/lucky-baboon-4-->
-    <div class="top-row">
         <form method="POST" action="/search" class="custom-search-form">
         <div class="container">
         <input type="text" name="title" id="search-input" class="input" autocomplete="off" placeholder="Enter Game Name..." required>
@@ -93,9 +92,8 @@
     <input type="hidden" name="title" value="{{ search_query }}">
     <input type="hidden" name="view"  value="{{ view }}">
   {% endif %}
-  <label for="sortSelect">Sort by:</label>
   <select name="sort" id="sortSelect" onchange="this.form.submit()">
-    <option value=""    {% if not sort %}selected{% endif %}></option>
+    <option value="" disabled {% if not sort %}selected{% endif %}>Sort by:</option>
     <option value="alpha"   {% if sort=='alpha'   %}selected{% endif %}>Title (A→Z)</option>
     <option value="sale"    {% if sort=='sale'    %}selected{% endif %}>Sale Price (Low→High)</option>
     <option value="original" {% if sort=='original' %}selected{% endif %}>Original Price (Low→High)</option>
