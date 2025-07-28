@@ -88,14 +88,19 @@
 
 <!-- GRID SORT CONTROLS -->
 <form id="sortControlsGrid" method="get" class="sort-controls">
+  <!-- if this is a search, carry the title & view along -->
+  {% if search_query %}
+    <input type="hidden" name="title" value="{{ search_query }}">
+    <input type="hidden" name="view"  value="{{ view }}">
+  {% endif %}
   <label for="sortSelect">Sort by:</label>
   <select name="sort" id="sortSelect" onchange="this.form.submit()">
     <option value=""    {% if not sort %}selected{% endif %}></option>
-    <option value="alpha"   {% if sort=='alpha'   %}selected{% endif %}>Name (A→Z)</option>
+    <option value="alpha"   {% if sort=='alpha'   %}selected{% endif %}>Title (A→Z)</option>
     <option value="sale"    {% if sort=='sale'    %}selected{% endif %}>Sale Price (Low→High)</option>
-    <option value="original" {% if sort=='original' %}selected{% endif %}>Original Price (Low→High)</option>
+    <option value="original" {% if sort=='original' %}selected{% endif %}>Original Price (Low→High)</option>
+    <option value="savings" {% if sort=='savings' %}selected{% endif %}>Discount</option>
     <option value="rating"  {% if sort=='rating'  %}selected{% endif %}>Deal Rating</option>
-    <option value="savings" {% if sort=='savings' %}selected{% endif %}>Savings (%)</option>
   </select>
 </form>
 
@@ -179,36 +184,41 @@
 </div>
 
 <div id="listWrapper" class="view-wrapper list-wrapper" style="display: none;">
-        <!-- LIST VIEW: TABLE -->
-         <div class="table-container">
+<!-- LIST VIEW: TABLE -->
+<div class="table-container">
 <table class="deal-table">
 <thead>
+    <!--links for sorting column headers will point to the GET pathway from app.py-->
   <tr>
     <th>
-      <a href="?sort=alpha&view=list" class="{{ 'active' if sort=='alpha' else '' }}">
+      <a href="?{% if search_query %}title={{ search_query }}&{% endif %}sort=alpha&view=list"
+        class="{{ 'active' if sort=='alpha' else '' }}">
         Title
-      </a>
+        </a>
     </th>
     <th>
-      <a href="?sort=sale&view=list" class="{{ 'active' if sort=='sale' else '' }}">
+        <a href="?{% if search_query %}title={{ search_query }}&{% endif %}sort=sale&view=list"
+        class="{{ 'active' if sort=='sale' else '' }}">
         Sale Price
-      </a>
+        </a>
     </th>
     <th>
-      <a href="{{ url_for('index', sort='original', view='list') }}"
-         class="{{ 'active' if sort=='original' else '' }}">
+        <a href="?{% if search_query %}title={{ search_query }}&{% endif %}sort=original&view=list"
+            class="{{ 'active' if sort=='original' else '' }}">
         Original Price
-      </a>
+        </a>
+    </th>
+        <th>
+        <a href="?{% if search_query %}title={{ search_query }}&{% endif %}sort=savings&view=list"
+            class="{{ 'active' if sort=='savings' else '' }}">
+            Discount
+        </a>
     </th>
     <th>
-      <a href="?sort=savings&view=list" class="{{ 'active' if sort=='savings' else '' }}">
-        Discount
-      </a>
-    </th>
-    <th>
-      <a href="?sort=rating&view=list" class="{{ 'active' if sort=='rating' else '' }}">
-        Deal Rating
-      </a>
+        <a href="?{% if search_query %}title={{ search_query }}&{% endif %}sort=rating&view=list"
+            class="{{ 'active' if sort=='rating' else '' }}">
+            Deal Rating
+        </a>
     </th>
     <th>Purchase</th>
   </tr>
