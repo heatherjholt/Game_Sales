@@ -3,6 +3,7 @@ html, body {
   height: 100%;
   font-family: monospace, sans-serif;
   background: #5a2a9c url("/static/SnakeSide.png") no-repeat bottom right fixed;
+  background-size: cover;
   color: #efeff1;
 }
 
