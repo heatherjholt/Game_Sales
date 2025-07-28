@@ -5,9 +5,9 @@ import requests
 from request_deals import search_games
 # For database functions
 from database import create_deals_table, store_deals, get_top_50_deals, insert_deal, search_games_database
-from database import clear_deals_table, create_email_table, insert_email
+from database import clear_table, create_email_table, insert_email, store_searches
 from database import sort_by_alphabetical, sort_by_deal_rating, sort_by_normal_price, sort_by_sales_price
-from database import sort_by_savings
+from database import sort_by_savings, create_searches_table
 #for email subscription 
 from mailer import emailing
 
@@ -40,11 +40,11 @@ def index():
     #deals = get_top_50_deals()
     sort = request.args.get("sort", "")
     view = request.args.get("view", "grid")
-    if   sort == "alpha":   deals = sort_by_alphabetical(RESULTS_PER_PAGE)
-    elif sort == "sale":    deals = sort_by_sales_price(RESULTS_PER_PAGE)
-    elif sort == "original": deals = sort_by_normal_price(RESULTS_PER_PAGE)
-    elif sort == "savings": deals = sort_by_savings(RESULTS_PER_PAGE)
-    elif sort == "rating":  deals = sort_by_deal_rating(RESULTS_PER_PAGE)
+    if   sort == "alpha":   deals = sort_by_alphabetical(limit=RESULTS_PER_PAGE)
+    elif sort == "sale":    deals = sort_by_sales_price(limit=RESULTS_PER_PAGE)
+    elif sort == "original": deals = sort_by_normal_price(limit=RESULTS_PER_PAGE)
+    elif sort == "savings": deals = sort_by_savings(limit=RESULTS_PER_PAGE)
+    elif sort == "rating":  deals = sort_by_deal_rating(limit=RESULTS_PER_PAGE)
     else:                   deals = get_top_50_deals()
     #TESTING print(deals[6])
     return render_template(
@@ -78,7 +78,7 @@ def search():
         results = search_games(query)
         for d in results:
              d["storeID"] = int(d["storeID"])
-             insert_deal(d)
+             insert_deal(d, "searches")
         deals = search_games_database(query)
 
 #apply sort after fetching search hits
@@ -112,6 +112,9 @@ def subscribe():
 if __name__ in "__main__":
     create_email_table() 
     create_deals_table()
-    clear_deals_table()
-    store_deals()
+    create_searches_table()
+    clear_table()
+    clear_table("searches")
+    store_deals(50)
+    store_searches(50000)
     app.run(debug=True)

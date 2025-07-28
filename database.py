@@ -24,12 +24,34 @@ def create_deals_table():
     conn.commit()
     conn.close()
     
-# Function that inserts a deal into the database
-def insert_deal(deal):
+def create_searches_table():
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
     table.execute("""
-            INSERT OR REPLACE INTO deals (
+                CREATE TABLE IF NOT EXISTS searches (
+                    dealID TEXT PRIMARY KEY,
+                    title TEXT,
+                    storeID INTEGER,
+                    gameID INTEGER,
+                    salePrice REAL,
+                    normalPrice REAL,
+                    savings REAL,
+                    metacriticScore INTEGER,
+                    steamRatingPercent INTEGER,
+                    steamAppID TEXT,
+                    dealRating REAL,
+                    thumb TEXT
+                )
+            """)
+    conn.commit()
+    conn.close()
+    
+# Function that inserts a deal into the database
+def insert_deal(deal, table_name="deals"):
+    conn = sqlite3.connect("deals.db", isolation_level=None)
+    table = conn.cursor()
+    table.execute(f"""
+            INSERT OR REPLACE INTO {table_name} (
                 dealID, title, storeID, gameID, salePrice, normalPrice,
                 savings, metacriticScore, steamRatingPercent, steamAppID, dealRating, thumb 
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
@@ -51,16 +73,21 @@ def insert_deal(deal):
     conn.close()
     
 # Function that will store deals retrieved from the CheapShark API
-def store_deals():
-    deals = top_deals(50000)
+def store_deals(num_deals):
+    deals = top_deals(num_deals)
     for deal in deals:
         insert_deal(deal)
         
+def store_searches(num_deals):
+    deals = top_deals(num_deals)
+    for deal in deals:
+        insert_deal(deal, "searches")
+        
 # Function that deletes deals from the database
-def delete_deal(dealID):
+def delete_deal(dealID, table_name="deals"):
     conn = sqlite3.connect("deals.db")
     table = conn.cursor()
-    table.execute("DELETE FROM deals WHERE dealID = ?", (dealID,))
+    table.execute(f"DELETE FROM {table_name} WHERE dealID = ?", (dealID,))
     conn.commit()
     conn.close()
     
@@ -100,7 +127,7 @@ def search_games_database(title, limit=50):
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
     table.execute("""
-        SELECT * FROM deals
+        SELECT * FROM searches
         WHERE title LIKE ?
         ORDER BY dealRating DESC
         LIMIT ?
@@ -110,12 +137,12 @@ def search_games_database(title, limit=50):
     return deals
 
 # Function that sorts by alphabetical order using database sorting
-def sort_by_alphabetical(limit=50):
+def sort_by_alphabetical(table_name="deals", limit=50):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
-    table.execute("""
-                  SELECT * FROM deals
+    table.execute(f"""
+                  SELECT * FROM {table_name}
                   ORDER BY title ASC
             """)
     deals = [dict(row) for row in table.fetchall()]
@@ -123,12 +150,12 @@ def sort_by_alphabetical(limit=50):
     return deals
 
 # Function that sorts by games' sales price
-def sort_by_sales_price(limit=50):
+def sort_by_sales_price(table_name="deals", limit=50):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
-    table.execute("""
-                  SELECT * FROM deals
+    table.execute(f"""
+                  SELECT * FROM {table_name}
                   ORDER BY salePrice ASC
             """)
     deals = [dict(row) for row in table.fetchall()]
@@ -136,12 +163,12 @@ def sort_by_sales_price(limit=50):
     return deals
 
 # Sort by normal or original price
-def sort_by_normal_price(limit=50):
+def sort_by_normal_price(table_name="deals", limit=50):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
-    table.execute("""
-                  SELECT * FROM deals
+    table.execute(f"""
+                  SELECT * FROM {table_name}
                   ORDER BY normalPrice ASC
             """)
     deals = [dict(row) for row in table.fetchall()]
@@ -149,12 +176,12 @@ def sort_by_normal_price(limit=50):
     return deals
 
 # Sort by deal rating, which is the default, but needed if user wants to resort by deal rating
-def sort_by_deal_rating(limit=50):
+def sort_by_deal_rating(table_name="deals", limit=50):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
-    table.execute("""
-                  SELECT * FROM deals
+    table.execute(f"""
+                  SELECT * FROM {table_name}
                   ORDER by dealRating DESC
             """)
     deals = [dict(row) for row in table.fetchall()]
@@ -162,12 +189,12 @@ def sort_by_deal_rating(limit=50):
     return deals
 
 # Sort by the amount of money saved
-def sort_by_savings(limit=50):
+def sort_by_savings(table_name="deals", limit=50):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
-    table.execute("""
-                  SELECT * FROM deals
+    table.execute(f"""
+                  SELECT * FROM {table_name}
                   ORDER BY savings DESC
             """)
     deals = [dict(row) for row in table.fetchall()]
@@ -175,10 +202,10 @@ def sort_by_savings(limit=50):
     return deals
 
 # Clear the table of deals
-def clear_deals_table():
+def clear_table(table_name="deals"):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
-    table.execute("DELETE FROM deals")
+    table.execute(f"DELETE FROM {table_name}")
     conn.commit()
     conn.close()
 
