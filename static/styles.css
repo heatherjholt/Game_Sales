@@ -2,7 +2,7 @@
 html, body {
   height: 100%;
   font-family: monospace, sans-serif;
-  background: #5a2a9c url("/static/SnakeSide.png") no-repeat bottom right fixed;
+  background: #000000 url("/static/SnakeSide.png") no-repeat bottom right fixed;
   background-size: cover;
   color: #efeff1;
 }
@@ -44,8 +44,8 @@ body::after {
 }
 
 .banner-inner {
-    width: 100%;
-    padding: 0;
+
+  padding: 0;
   max-width: 1200px;   
   margin: 0 auto; 
   display: flex;
@@ -638,8 +638,14 @@ img[alt="Store Logo"] {
 
 .input:focus {
   outline: none;
-  border: 2px solid #a970ff;
+  border: 2px solid #292929;
   background-color: #0e0e10;
+}
+
+/*force color on searchbox*/
+#search-input::placeholder {
+  color: #efeff1 !important;
+  opacity: 1 !important;
 }
 
 .input:hover {

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cheap_Snake Game Deals</title>
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='snakelogo.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='snakeysnaketiny.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"><!--loads css file for styling-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><!--loads jquery for autocomplete-->
     <script src="{{ url_for('static', filename='script.js') }}"></script><!--loads js file-->
@@ -22,7 +22,7 @@
 
 <header class="banner">
   <div class="banner-inner">
-    <img src="{{ url_for('static', filename='bannerround.png') }}"
+    <img src="{{ url_for('static', filename='snakeysnaketiny.png') }}"
          alt="Snake Logo" class="banner-logo">
   </div>
 </header>
@@ -48,7 +48,7 @@
     -->
         <!--home button, search box, and view toggle-->
     <div class="top-bar">
-        <a href="{{ url_for('index', view='grid') }}" class="home-button">
+        <a href="{{ url_for('index', view='list') }}" class="home-button">
             🐍 Home
         </a>
 
