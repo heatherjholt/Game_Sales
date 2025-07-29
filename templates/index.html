@@ -16,7 +16,6 @@
     setView("{{ view }}");
   });
 </script>
-<script src="{{ url_for('static', filename='script.js') }}"></script>
 
 <body>
 
@@ -85,7 +84,7 @@
             <div class="card-content">
                 <div class="card-image-container">
                     {% if deal.steamAppID %}
-                        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/{{ deal.steamAppID }}/header.jpg" alt="Steam Banner">
+                        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/{{ deal.steamAppID }}/capsule_231x87.jpg" alt="Steam Banner">
                     {% elif deal.thumb %}
                         <img src="{{ deal.thumb }}" alt="Thumbnail">
                     {% else %}
