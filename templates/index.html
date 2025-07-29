@@ -189,6 +189,7 @@
 <thead>
     <!--links for sorting column headers will point to the GET pathway from app.py-->
   <tr>
+    <th>Store</th>
     <th>
       <a href="?{% if search_query %}title={{ search_query }}&{% endif %}sort=alpha&view=list"
         class="{{ 'active' if sort=='alpha' else '' }}">
@@ -226,6 +227,17 @@
   <tbody>
     {% for deal in deals %}
     <tr>
+        <td class = "store-logo-cell">
+            {% set store = store_map.get(deal.storeID, {})%}
+            {% if store %}
+            <img src = "https://www.cheapshark.com{{ store.images.icon }}"
+                alt = "{{ store.storeName }}"
+                class = "store-logo"
+                title = "{{ store.storeName }}">
+            {% else %}
+            <span style = " color: #999; font-size: 0.8em;">N/A</span>
+            {% endif %}
+        </td>
         <td class="title-with-thumb">
         <div class="thumb-wrapper">
             <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
