@@ -95,20 +95,23 @@
                 <div class="card-info">
                 <h3>{{ deal.title }}</h3>
                 <p class="price-line">
-                    <!-- original price, struck-through -->
-                    <span class="original-price">
-                    ${{ "%.2f"|format(deal.normalPrice|float) }}
-                    </span>
-                    <!-- sale price -->
-                    <span class="sale-price">
-                    ${{ "%.2f"|format(deal.salePrice|float) }}
-                    </span>
                     <!-- percent off -->
                     {% if deal.savings %}
-                    <span class="discount">
-                        ({{ "%.0f"|format(deal.savings|float) }}% off)
+                    <span class="discount-badge">
+                        (-{{ "%.0f"|format(deal.savings|float) }}%)
                     </span>
                     {% endif %}
+
+                    <span class="price-values">
+                        <!-- original price, struck-through -->
+                        <span class="original-price">
+                        ${{ "%.2f"|format(deal.normalPrice|float) }}
+                        </span>
+                        <!-- sale price -->
+                        <span class="sale-price">
+                        ${{ "%.2f"|format(deal.salePrice|float) }}
+                        </span>
+                    </span>
                 </p>
                 </div>
 

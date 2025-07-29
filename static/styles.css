@@ -18,22 +18,23 @@ body {
     flex-direction: column;
 }
 
-
-
 .banner {
   width: 90%;
-  max-width: 1482px; /*trying to keep it no wider than the view-wrapper*/
+  max-width: 1510px; /*trying to keep it no wider than the view-wrapper*/
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box; 
   background-color: #000;
+  border-radius: 0 0 12px 12px;
+  overflow: visible;
 }
 
 .banner-logo {
   display: block; 
   width: auto;
   max-height: 200px;
+  border-bottom-right-radius: 12px;
 }
 
 .banner-inner {
@@ -149,12 +150,6 @@ img[alt="Store Logo"] {
   transform: translateY(-5px);
 }
 
-.card-image {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-}
-
 .card-info {
   padding: 0.8em;
   font-size: 0.95em;
@@ -230,7 +225,6 @@ img[alt="Store Logo"] {
   width: auto;
   height: 100px;
   background-color: #000;
- 
   object-position: top;
   display: flex;
   justify-content: center;
@@ -274,108 +268,9 @@ img[alt="Store Logo"] {
   justify-content: center;
 }
 
-.card-list {
-  /*display: none;*/
-  flex-direction: column;
-  gap: 1em;
-  align-items: stretch;
-  padding: 0;
-}
-
-.card-list .card {
-  flex-direction: row;
-  display: flex;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.card-list .card-image-container {
-  width: 200px;
-  height: 120px;
-  flex-shrink: 0;
-}
-
-.card-list .card-info {
-  text-align: left;
-  padding: 1em;
-  flex-grow: 1;
-}
-
-.card-list .card-hover {
-  display: none !important; /* disable hover in list view */
-}
-
 #gridWrapper,
 #listWrapper {
   display: block;
-}
-
-.top-controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1em;
-  margin-bottom: 2em;
-}
-
-.top-row {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
-.home-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 35px;
-  padding: 0 14px;
-  background-color: #53535f; 
-  color: #efeff1;
-  border: none;
-  border-radius: 7px;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: 'Courier New', Courier, monospace;
-  text-decoration: none;
-  box-sizing: border-box;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.autocomplete-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-}
-
-.search-form {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-}
-
-.search-form input {
-  padding: 0.4em;
-  border: none;
-  border-radius: 4px;
-}
-
-.search-form button {
-  padding: 0.4em 0.8em;
-  background-color: #666;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 .view-toggle {
@@ -436,7 +331,7 @@ img[alt="Store Logo"] {
 }
 
 .email-signup button:hover {
-  background-color: #6a0dad;
+  background-color: #390b5a;
 }
 
 .price-line {
@@ -444,23 +339,40 @@ img[alt="Store Logo"] {
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.4em;
-  align-items: baseline;
+  align-items: stretch;
+}
+
+.price-values {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1em;
+}
+
+.discount-badge {
+  display: inline-flex;
+  background-color: #1f002b;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1;
+  align-self: stretch;
+  align-items: center;
+  justify-content: center;
 }
 
 .original-price {
   text-decoration: line-through;
-  color: #aaa;
-  font-size: 0.9em;
+  color: #790000;
+  font-size: .9em;
 }
 
 .sale-price {
   font-weight: bold;
-  color: #32cd32;
-}
-
-.discount {
-  font-size: 0.85em;
-  color: #ff7675;
+  color: #008d00;
+  font-size: 1.1em;
 }
 
 .view-wrapper {
@@ -494,6 +406,16 @@ img[alt="Store Logo"] {
 .list-wrapper .card-list {
   position: relative;
   z-index: 1;
+}
+
+/* list view fontsize */
+.list-wrapper .deal-table {
+  font-size: 1rem;
+}
+
+.list-wrapper .deal-table th {
+  font-size: 1.05rem;
+  font-weight: bold;
 }
 
 .card,
@@ -565,7 +487,6 @@ img[alt="Store Logo"] {
   text-decoration: underline;
 }
 
-.top-row,
 .view-toggle,
 .sort-controls {
   max-width: 1200px;
