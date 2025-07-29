@@ -39,7 +39,7 @@ store_map = get_store_map()
 def index():
     #deals = get_top_50_deals()
     sort = request.args.get("sort", "")
-    view = request.args.get("view", "grid")
+    view = request.args.get("view", "list")
     if   sort == "alpha":   deals = sort_by_alphabetical(limit=RESULTS_PER_PAGE)
     elif sort == "sale":    deals = sort_by_sales_price(limit=RESULTS_PER_PAGE)
     elif sort == "original": deals = sort_by_normal_price(limit=RESULTS_PER_PAGE)
@@ -70,7 +70,7 @@ def search():
 
 #grab sort & view params exactly as in index()
     sort = request.args.get("sort", "")
-    view = request.args.get("view", "grid")
+    view = request.args.get("view", "list")
 
 #get deals
     deals = search_games_database(query)
