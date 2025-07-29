@@ -21,38 +21,7 @@
 <body>
 
 <header class="banner">
-            <a href="{{ url_for('index', view='list') }}">
-  <div class="banner-inner">
-    <img src="{{ url_for('static', filename='banner.png') }}"
-         alt="Snake Logo" class="banner-logo">
-  </div>
-</header>
-    <!--<h1>Cheap_Snake Game Deals</h1>-->
-    <!--PREV METHOD:search box with autosuggest
-    <div class="top-row">
-            <form method="POST" action="/search" class="search-form">
-            <div class="autocomplete-container">
-                <input type="text" name="title" id="search-input" autocomplete="off" placeholder="Enter Game Name" required>
-                <ul id="suggestions" class="suggestions"></ul>
-            </div>
-            <button type="submit">Ssssearch...</button>
-            </form>
-    </div>-->
-    <!--PREV METHOD:search box, pulls suggestions from script.js for autocomplete
-
-    <form method="POST" action="/search">
-
-        <input type="text" name="title" id="search-input" autocomplete="off" placeholder="Enter Game Name" required>
-        <button type="submit">Ssssearch...</button>
-        <ul id="suggestions" class="suggestions"></ul>
-    </form> 
-    -->
-        <!--home button, search box, and view toggle-->
     <div class="top-bar">
-        <a href="{{ url_for('index', view='list') }}" class="home-button">
-            🐍 Home
-        </a>
-
     <!--SEARCH BAR: credit to https://uiverse.io/benjimich/lucky-baboon-4-->
         <form method="POST" action="/search" class="custom-search-form">
         <div class="container">
@@ -66,7 +35,11 @@
         </div>
         </form>
     </div>
-
+        <a href="{{ url_for('index', view='list') }}">
+    <img src="{{ url_for('static', filename='banner.png') }}"
+         alt="Snake Logo" class="banner-logo">
+    </a>
+</header>
 
     <!--data from flask/db is looped through, finds thumbnail, price, store name using store map, rating info, and link to game-->
     {% if deals %}

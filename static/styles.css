@@ -26,28 +26,30 @@ body::after {
 }
 
 .banner {
-  padding: 0.25rem 0;
+  width: 90%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   box-sizing: border-box; 
+  background-color: #000;
 }
 
 .banner-logo {
   display: block; 
-  height: auto;     
-  width: 80%;
+  width: 1000px;
   max-height: 200px;
 }
 
 .banner-inner {
-
-  padding: 0;
-  
-  margin: 0 auto; 
   display: flex;
   align-items: center;
+}
+
+.top-bar {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 /* fancy up suggestions attempt */
@@ -313,15 +315,6 @@ img[alt="Store Logo"] {
   display: flex;
   justify-content: center;
   width: 100%;
-}
-
-.top-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-  margin-bottom: 2em;
-  flex-wrap: wrap;
 }
 
 .search-bar {
@@ -674,11 +667,10 @@ img[alt="Store Logo"] {
 }
 
 .custom-search-form {
-  width: auto;
-  display: flex;
-  align-items: center;
   margin: 0;
-  padding: 0;
+  display: flex;
+  padding-left: 1em;
+  padding-bottom: 9em;
 }
 
 h1 {
