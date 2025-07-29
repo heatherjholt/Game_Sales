@@ -26,22 +26,31 @@ const gridWrapper = document.getElementById('gridWrapper');
 const listWrapper = document.getElementById('listWrapper');
 
   
-
+    //check if view is set in URL and default to grid if not
 function setView(view) {
-  const grid = document.getElementById('gridWrapper');
-  const list = document.getElementById('listWrapper');
+  const grid         = document.getElementById('gridWrapper');
+  const list         = document.getElementById('listWrapper');
   const sortControls = document.getElementById('sortControlsGrid');
 
+  //update the URL so `?view=grid` or list stays in the address bar
+  const url = new URL(window.location);
+  url.searchParams.set('view', view);
+  window.history.replaceState(null, '', url);
+    //update the view in the gui
+  const viewInput = document.querySelector('#sortControlsGrid input[name="view"]');
+  if (viewInput) viewInput.value = view;
+    //show/hide the grid or list based on the view
   if (view === 'grid') {
-    grid.style.display        = 'block';
-    list.style.display        = 'none';
-    sortControls.style.display= 'block';
+    grid.style.display         = 'block';
+    list.style.display         = 'none';
+    sortControls.style.display = 'block';
   } else {
-    grid.style.display        = 'none';
-    list.style.display        = 'block';
-    sortControls.style.display= 'none';
+    grid.style.display         = 'none';
+    list.style.display         = 'block';
+    sortControls.style.display = 'none';
   }
 }
+
 
 //when user picks a sort option, reload with ?sort=...
 document.getElementById('sortSelect').addEventListener('change', function() {

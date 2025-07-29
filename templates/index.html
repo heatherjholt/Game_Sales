@@ -21,6 +21,7 @@
 <body>
 
 <header class="banner">
+    <div class="site-container banner-inner">
     <div class="top-bar">
     <!--SEARCH BAR: credit to https://uiverse.io/benjimich/lucky-baboon-4-->
         <form method="POST" action="/search" class="custom-search-form">
@@ -34,6 +35,7 @@
         <ul id="suggestions" class="suggestions"></ul>
         </div>
         </form>
+    </div>
     </div>
         <a href="{{ url_for('index', view='list') }}">
     <img src="{{ url_for('static', filename='banner.png') }}"

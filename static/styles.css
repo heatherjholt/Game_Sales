@@ -52,6 +52,15 @@ body::after {
   flex-wrap: wrap;
 }
 
+.site-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 1rem; 
+}
+
+
 /* fancy up suggestions attempt */
 #suggestions {
   position: absolute;
@@ -372,12 +381,12 @@ img[alt="Store Logo"] {
 
 .view-toggle {
   display: flex;
-  gap: 0.75em;
+  gap: 2em;
   justify-content: center;
+  margin-bottom: 0;
 }
 
 .view-toggle button {
-  padding: 0.5em 1em;
   background-color: #444;
   color: white;
   border: none;
@@ -452,7 +461,7 @@ img[alt="Store Logo"] {
 
 .view-wrapper {
   position: relative;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 1rem;
   max-width: 100%;
   width: 100%;
@@ -558,7 +567,7 @@ img[alt="Store Logo"] {
 .sort-controls {
   max-width: 1200px;
   width: 100%;
-  margin: 0 auto 1rem;
+  margin: 0 auto .25rem;
 }
 
 .search-form {
@@ -675,7 +684,7 @@ img[alt="Store Logo"] {
 
 h1 {
   font-size: 3rem; 
-  margin-top: 0.1rem;
+  margin-top: 4rem;
   margin-bottom: 0.5rem; 
   text-align: center;
   font-weight: bold;
