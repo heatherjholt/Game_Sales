@@ -1,10 +1,7 @@
 /* messing with perspective of background photo and weird header look to it */
 html, body {
-  height: 100%;
-  font-family: monospace, sans-serif;
   background: #000000 url("/static/SnakeSide.png") no-repeat bottom right fixed;
   background-size: cover;
-  color: #efeff1;
   margin: 0;
   padding: 0;
 }
@@ -16,7 +13,7 @@ body {
     align-items: center;
     font-family: 'Courier New', Courier, monospace, sans-serif;
     color: black; 
-    padding: 2em;
+    padding: .1em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,31 +26,28 @@ body::after {
 }
 
 .banner {
-  width: 100%;
   padding: 0.25rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-  gap: 1rem; 
+  box-sizing: border-box; 
 }
 
 .banner-logo {
   display: block; 
-
   height: auto;     
-  max-width: 20%;   
+  width: 80%;
+  max-height: 200px;
 }
 
 .banner-inner {
 
   padding: 0;
-  max-width: 1200px;   
+  
   margin: 0 auto; 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
 }
 
 /* fancy up suggestions attempt */
@@ -116,7 +110,7 @@ img[alt="Store Logo"] {
 .footer {
     margin-top: auto;
     text-align: center;
-    padding: 1em;
+    padding: .1em;
     font-size: 0.9em;
     color: #666;
 }
