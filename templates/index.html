@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cheap_Snake Game Deals</title>
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='snakeysnaketiny.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='snakeonly.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"><!--loads css file for styling-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><!--loads jquery for autocomplete-->
     <script src="{{ url_for('static', filename='script.js') }}"></script><!--loads js file-->
@@ -23,7 +23,7 @@
 <header class="banner">
             <a href="{{ url_for('index', view='list') }}">
   <div class="banner-inner">
-    <img src="{{ url_for('static', filename='snakeysnaketiny.png') }}"
+    <img src="{{ url_for('static', filename='snakeonly.png') }}"
          alt="Snake Logo" class="banner-logo">
   </div>
 </header>
@@ -89,9 +89,9 @@
 <!-- GRID SORT CONTROLS -->
 <form id="sortControlsGrid" method="get" class="sort-controls">
   <!-- if this is a search, carry the title & view along -->
+   <input type="hidden" name="view"  value="{{ view }}">
   {% if search_query %}
     <input type="hidden" name="title" value="{{ search_query }}">
-    <input type="hidden" name="view"  value="{{ view }}">
   {% endif %}
   <select name="sort" id="sortSelect" onchange="this.form.submit()">
     <option value="" disabled {% if not sort %}selected{% endif %}>Sort by:</option>

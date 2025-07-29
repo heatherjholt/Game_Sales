@@ -5,6 +5,8 @@ html, body {
   background: #000000 url("/static/SnakeSide.png") no-repeat bottom right fixed;
   background-size: cover;
   color: #efeff1;
+  margin: 0;
+  padding: 0;
 }
 
 /* background image, font/color */
@@ -28,7 +30,7 @@ body::after {
 
 .banner {
   width: 100%;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,9 +40,9 @@ body::after {
 
 .banner-logo {
   display: block; 
-  width: 100%; /*stretch (or shrink) to 100% of .banner-inner */
+
   height: auto;     
-  max-width: none;   
+  max-width: 20%;   
 }
 
 .banner-inner {
@@ -502,7 +504,7 @@ img[alt="Store Logo"] {
 
 .hidden { display: none !important; }
 .view-wrapper { display: none; }
-#gridWrapper { display: block; }
+#listWrapper { display: block; }
 
 .table-container {
   width: 100%;

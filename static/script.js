@@ -49,5 +49,9 @@ document.getElementById('sortSelect').addEventListener('change', function() {
   const url = new URL(window.location);
   if (val) url.searchParams.set('sort', val);
   else     url.searchParams.delete('sort');
+    const view = document.getElementById('gridWrapper').style.display === 'block'
+        ? 'grid'
+        : 'list';
+    url.searchParams.set('view', view);
   window.location.href = url.toString();
 });
