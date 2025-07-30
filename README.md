@@ -11,9 +11,8 @@
 
 # HOW TO RUN ON WINDOWS
 '''
-    pip install -r requirements.txt
-
-    python app.py
+pip install -r requirements.txt
+python app.py
 '''
     Follow the provided link/address.
 
