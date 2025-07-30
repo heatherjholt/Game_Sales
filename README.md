@@ -10,11 +10,9 @@
     Python 3 or greater
 
 # HOW TO RUN ON WINDOWS
-'''
 pip install -r requirements.txt
 python app.py
-'''
-    Follow the provided link/address.
+Follow the provided link/address.
 
 # HOW TO RUN ON MAC/LINUX
     chmod +x init.sh
