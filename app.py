@@ -4,10 +4,7 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 import requests
 from request_deals import search_games
 # For database functions
-from database import create_deals_table, store_deals, get_top_50_deals, insert_deal, search_games_database
-from database import clear_table, create_email_table, insert_email, store_searches
-from database import sort_by_alphabetical, sort_by_deal_rating, sort_by_normal_price, sort_by_sales_price
-from database import sort_by_savings, create_searches_table
+from database import *
 #for email subscription 
 from mailer import emailing
 
@@ -115,6 +112,6 @@ if __name__ in "__main__":
     create_searches_table()
     clear_table()
     clear_table("searches")
-    store_deals(50)
+    store_deals(1000)
     store_searches(50000)
     app.run(debug=True)

@@ -208,6 +208,17 @@ def clear_table(table_name="deals"):
     table.execute(f"DELETE FROM {table_name}")
     conn.commit()
     conn.close()
+    
+def hide_duplicates(table_name="deals"):
+    conn = sqlite3.connect("deals.db", isolation_level=None)
+    table = conn.cursor()
+    table.execute("""
+                  SELECT * FROM {table_name} WHERE (title, salePrice)
+                  IN (SELECT title, MIN(salePrice) FROM {table_name} GROUP BY title
+    """)
+    deals = [dict(row) for row in table.fetchall()]
+    conn.close()
+    return deals
 
 # Testing function
 def print_to_text_file(deals, filename="deals.txt"):
