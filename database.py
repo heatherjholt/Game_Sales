@@ -137,66 +137,96 @@ def search_games_database(title, limit=50):
     return deals
 
 # Function that sorts by alphabetical order using database sorting
-def sort_by_alphabetical(table_name="deals", limit=50):
+def sort_by_alphabetical(table_name="deals", limit=50, search_query=None):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
-    table.execute(f"""
-                  SELECT * FROM {table_name}
-                  ORDER BY title ASC
-            """)
+    if search_query:
+        table.execute(f"""SELECT * FROM {table_name}
+                      WHERE title LIKE ? ORDER
+                      BY title ASC LIMIT ?
+                      """, (f"%{search_query}%", limit))
+    else:
+        table.execute(f"""
+                    SELECT * FROM {table_name}
+                    ORDER BY title ASC LIMIT ?
+                """, (limit,))
     deals = [dict(row) for row in table.fetchall()]
     conn.close()
     return deals
 
 # Function that sorts by games' sales price
-def sort_by_sales_price(table_name="deals", limit=50):
+def sort_by_sales_price(table_name="deals", limit=50, search_query=None):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
-    table.execute(f"""
-                  SELECT * FROM {table_name}
-                  ORDER BY salePrice ASC
-            """)
+    if search_query:
+        table.execute(f"""SELECT * FROM {table_name}
+                      WHERE title LIKE ?
+                      ORDER BY salePrice ASC LIMIT ?
+                      """, (f"%{search_query}%", limit))
+    else:
+        table.execute(f"""
+                    SELECT * FROM {table_name}
+                    ORDER BY salePrice ASC
+                    LIMIT ?""", (limit,))
     deals = [dict(row) for row in table.fetchall()]
     conn.close()
     return deals
 
 # Sort by normal or original price
-def sort_by_normal_price(table_name="deals", limit=50):
+def sort_by_normal_price(table_name="deals", limit=50, search_query=None):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
-    table.execute(f"""
-                  SELECT * FROM {table_name}
-                  ORDER BY normalPrice ASC
-            """)
+    if search_query:
+        table.execute(f""" SELECT * FROM {table_name}
+                      WHERE title LIKE ? ORDER
+                      BY normalPrice ASC LIMIT ?
+                      """, (f"%{search_query}%", limit))
+    else:
+        table.execute(f"""
+                    SELECT * FROM {table_name}
+                    ORDER BY normalPrice ASC LIMIT ?
+                    """, (limit,))
     deals = [dict(row) for row in table.fetchall()]
     conn.close()
     return deals
 
 # Sort by deal rating, which is the default, but needed if user wants to resort by deal rating
-def sort_by_deal_rating(table_name="deals", limit=50):
+def sort_by_deal_rating(table_name="deals", limit=50, search_query=None):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
-    table.execute(f"""
-                  SELECT * FROM {table_name}
-                  ORDER by dealRating DESC
-            """)
+    if search_query:
+        table.execute(f"""SELECT * FROM {table_name}
+                      WHERE title LIKE ? ORDER
+                      BY dealRating DESC LIMIT ?
+                      """, (f"%{search_query}%", limit))
+    else:    
+        table.execute(f"""
+                    SELECT * FROM {table_name}
+                    ORDER by dealRating DESC LIMIT ?
+                    """, (limit,))
     deals = [dict(row) for row in table.fetchall()]
     conn.close()
     return deals
 
 # Sort by the amount of money saved
-def sort_by_savings(table_name="deals", limit=50):
+def sort_by_savings(table_name="deals", limit=50, search_query=None):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     conn.row_factory = sqlite3.Row
     table = conn.cursor()
-    table.execute(f"""
-                  SELECT * FROM {table_name}
-                  ORDER BY savings DESC
-            """)
+    if search_query:
+        table.execute(f"""SELECT * FROM {table_name}
+                      WHERE title LIKE ? ORDER BY 
+                      savings DESC LIMIT ? 
+                      """, (f"%{search_query}%", limit))
+    else:
+        table.execute(f"""
+                    SELECT * FROM {table_name}
+                    ORDER BY savings DESC LIMIT ?
+                    """, (limit,))
     deals = [dict(row) for row in table.fetchall()]
     conn.close()
     return deals

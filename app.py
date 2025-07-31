@@ -79,14 +79,13 @@ def search():
         deals = search_games_database(query)
 
 #apply sort after fetching search hits
-    if   sort == "alpha":    deals.sort(key=lambda d: d["title"].lower())
-    elif sort == "sale":     deals.sort(key=lambda d: d["salePrice"])
-    elif sort == "original": deals.sort(key=lambda d: d["normalPrice"])
-    elif sort == "savings":  deals.sort(key=lambda d: d["savings"], reverse=True)
-    elif sort == "rating":   deals.sort(key=lambda d: d["dealRating"], reverse=True)
+    if   sort == "alpha":    deals = sort_by_alphabetical("searches", limit=RESULTS_PER_PAGE, search_query=query)
+    elif sort == "sale":     deals = sort_by_sales_price("searches", limit=RESULTS_PER_PAGE, search_query=query)
+    elif sort == "original": deals = sort_by_normal_price("searches", limit=RESULTS_PER_PAGE, search_query=query)
+    elif sort == "savings":  deals = sort_by_savings("searches", limit=RESULTS_PER_PAGE, search_query=query)
+    elif sort == "rating":   deals = sort_by_savings("searches", limit=RESULTS_PER_PAGE, search_query=query)
 
     return render_template("index.html",deals=deals,store_map=store_map,title=f"Search results for: {query}",search_query=query,sort=sort,view=view)
-
 
 #listens for get request, uses javascript to send request to api, returns top 5 suggestions (currently)
 @app.route('/autocomplete')
