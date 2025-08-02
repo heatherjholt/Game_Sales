@@ -24,6 +24,7 @@ def create_deals_table():
     conn.commit()
     conn.close()
     
+# Creates a seperate table for searches
 def create_searches_table():
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
@@ -83,7 +84,7 @@ def store_searches(num_deals):
     for deal in deals:
         insert_deal(deal, "searches")
         
-# Function that deletes deals from the database
+# Function that deletes deals from the database, unused
 def delete_deal(dealID, table_name="deals"):
     conn = sqlite3.connect("deals.db")
     table = conn.cursor()
@@ -91,7 +92,7 @@ def delete_deal(dealID, table_name="deals"):
     conn.commit()
     conn.close()
     
-# Function that updates current deals in the database
+# Function that updates current deals in the database, unused
 def update_deal(dealID, **kwargs):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
@@ -239,6 +240,7 @@ def clear_table(table_name="deals"):
     conn.commit()
     conn.close()
     
+# Planned function to hide duplicates but didnt have time to implement
 def hide_duplicates(table_name="deals"):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
