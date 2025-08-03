@@ -24,7 +24,6 @@ $(document).ready(function () {
 //toggle list/grid
 const gridWrapper = document.getElementById('gridWrapper');
 const listWrapper = document.getElementById('listWrapper');
-
   
     //check if view is set in URL and default to grid if not
 function setView(view) {
@@ -41,16 +40,15 @@ function setView(view) {
   if (viewInput) viewInput.value = view;
     //show/hide the grid or list based on the view
   if (view === 'grid') {
-    grid.style.display         = 'block';
-    list.style.display         = 'none';
+    grid.style.display = 'block';
+    list.style.display = 'none';
     sortControls.style.display = 'block';
   } else {
-    grid.style.display         = 'none';
-    list.style.display         = 'block';
+    grid.style.display = 'none';
+    list.style.display = 'block';
     sortControls.style.display = 'none';
   }
 }
-
 
 //when user picks a sort option, reload with ?sort=...
 document.getElementById('sortSelect').addEventListener('change', function() {

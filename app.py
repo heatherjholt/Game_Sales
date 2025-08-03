@@ -37,23 +37,23 @@ def index():
     #deals = get_top_50_deals()
     sort = request.args.get("sort", "")
     view = request.args.get("view", "list")
-    if   sort == "alpha":   deals = sort_by_alphabetical(limit=RESULTS_PER_PAGE)
-    elif sort == "sale":    deals = sort_by_sales_price(limit=RESULTS_PER_PAGE)
-    elif sort == "original": deals = sort_by_normal_price(limit=RESULTS_PER_PAGE)
-    elif sort == "savings": deals = sort_by_savings(limit=RESULTS_PER_PAGE)
-    elif sort == "rating":  deals = sort_by_deal_rating(limit=RESULTS_PER_PAGE)
-    else:                   deals = get_top_50_deals()
+    
+    if sort == "alpha":   
+        deals = sort_by_alphabetical(limit=RESULTS_PER_PAGE)
+    elif sort == "sale":    
+        deals = sort_by_sales_price(limit=RESULTS_PER_PAGE)
+    elif sort == "original": 
+        deals = sort_by_normal_price(limit=RESULTS_PER_PAGE)
+    elif sort == "savings": 
+        deals = sort_by_savings(limit=RESULTS_PER_PAGE)
+    elif sort == "rating":  
+        deals = sort_by_deal_rating(limit=RESULTS_PER_PAGE)
+    else:                   
+        deals = get_top_50_deals()
+        
     #TESTING print(deals[6])
-    return render_template(
-      "index.html",
-      deals=deals,
-      sort=sort,
-      view=view, 
-      store_map=store_map,
-      title="Top 50 Deals"
-    )
-
-
+    return render_template("index.html", deals=deals, sort=sort, view=view, 
+                           store_map=store_map, title="Top 50 Deals")
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
@@ -79,13 +79,19 @@ def search():
         deals = search_games_database(query)
 
 #apply sort after fetching search hits
-    if   sort == "alpha":    deals = sort_by_alphabetical("searches", limit=RESULTS_PER_PAGE, search_query=query)
-    elif sort == "sale":     deals = sort_by_sales_price("searches", limit=RESULTS_PER_PAGE, search_query=query)
-    elif sort == "original": deals = sort_by_normal_price("searches", limit=RESULTS_PER_PAGE, search_query=query)
-    elif sort == "savings":  deals = sort_by_savings("searches", limit=RESULTS_PER_PAGE, search_query=query)
-    elif sort == "rating":   deals = sort_by_savings("searches", limit=RESULTS_PER_PAGE, search_query=query)
+    if sort == "alpha":    
+        deals = sort_by_alphabetical("searches", limit=RESULTS_PER_PAGE, search_query=query)
+    elif sort == "sale":     
+        deals = sort_by_sales_price("searches", limit=RESULTS_PER_PAGE, search_query=query)
+    elif sort == "original": 
+        deals = sort_by_normal_price("searches", limit=RESULTS_PER_PAGE, search_query=query)
+    elif sort == "savings":  
+        deals = sort_by_savings("searches", limit=RESULTS_PER_PAGE, search_query=query)
+    elif sort == "rating":   
+        deals = sort_by_savings("searches", limit=RESULTS_PER_PAGE, search_query=query)
 
-    return render_template("index.html",deals=deals,store_map=store_map,title=f"Search results for: {query}",search_query=query,sort=sort,view=view)
+    return render_template("index.html",deals=deals,store_map=store_map,
+                           title=f"Search results for: {query}",search_query=query,sort=sort,view=view)
 
 #listens for get request, uses javascript to send request to api, returns top 5 suggestions (currently)
 @app.route('/autocomplete')

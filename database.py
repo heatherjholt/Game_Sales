@@ -244,7 +244,7 @@ def clear_table(table_name="deals"):
 def hide_duplicates(table_name="deals"):
     conn = sqlite3.connect("deals.db", isolation_level=None)
     table = conn.cursor()
-    table.execute("""
+    table.execute(f"""
                   SELECT * FROM {table_name} WHERE (title, salePrice)
                   IN (SELECT title, MIN(salePrice) FROM {table_name} GROUP BY title
     """)
