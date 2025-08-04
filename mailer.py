@@ -35,7 +35,7 @@ def send_outlook_email(subject, body, to):
     # Connect to Outlook SMTP server
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
         smtp.ehlo() # Establish ehlo connection
-        smtp.starttls()  # Upgrade the connection to tls connection
+        smtp.starttls()  # Upgrade the connection to secure tls connection
         smtp.ehlo() # Reinstate ehlo connection
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD) # Login to email using app password
         smtp.send_message(msg) # Email out the message
