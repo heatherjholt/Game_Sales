@@ -1,21 +1,21 @@
 import smtplib
 from email.message import EmailMessage
-from request_deals import top_deals
-from database import get_emails
+from database import get_emails, get_top_50_deals
 import time
 
 # Pull top 10 deals from the request deals
-deals = top_deals(10)
+deals = get_top_50_deals()
 #format the email as one long string
 def format_email(deals):
     lines = "Here are today’s top CheapSnake deals:\n"
-    for d in deals:
+    #using the database, display the top 10 deals in body of email
+    for i, d in enumerate(deals[:10]): 
         title   = d["title"]
         sale    = d["salePrice"]
         normal  = d["normalPrice"]
         savings = float(d["savings"])
         store   = d["dealID"]
-        lines += (f"- {title} @ Store https://www.cheapshark.com/redirect?dealID={store}: ${sale} --> was ${normal} ({savings:.0f}% off)\n")
+        lines += (f"-{i+1} {title} @ Store https://www.cheapshark.com/redirect?dealID={store}: ${sale} --> was ${normal} ({savings:.0f}% off)\n")
     return lines
 
 port = 587
