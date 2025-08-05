@@ -12,9 +12,8 @@ Python 3 or greater
     python app.py
 Follow the provided link/address.
 
-# HOW TO RUN ON MAC/LINUX
-    chmod +x init.sh
-    ./init.sh
+# HOW TO RUN ON MAC
+    source init.sh
 
     python3 app.py
 
