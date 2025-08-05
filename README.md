@@ -14,9 +14,7 @@ Follow the provided link/address.
 
 # HOW TO RUN ON MAC
     source init.sh
-
     python3 app.py
-
 Follow the provided link/address. 
 
 # NOTES
