@@ -7,7 +7,7 @@ Cheap_Snake Game Deals is a Flask-based web application that aggregates and disp
 # REQUIREMENTS
 Python 3 or greater
 
-# HOW TO RUN ON WINDOWS
+# HOW TO RUN ON WINDOWS/Jupyterhub
     pip install -r requirements.txt
     python app.py
 Follow the provided link/address.
